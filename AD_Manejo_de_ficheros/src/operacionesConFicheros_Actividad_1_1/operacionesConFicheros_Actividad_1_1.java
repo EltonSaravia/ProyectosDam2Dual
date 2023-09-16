@@ -59,3 +59,9 @@ public class operacionesConFicheros_Actividad_1_1 {
         }
     }
 
+/*
+ * mis compañeros me indicaron que debia llevar exepciones pero no termino de
+ * enteder cuales son utiles para estos casos porque intente usar las de IOExeption
+ * pero me indica que este caso no se puede dar el eclipse
+ */
+
