@@ -54,7 +54,7 @@ public class operacionesConFicheros_Actividad_1_1 {
 	        errores comunes que busque en internet, aunque tambien en vez de usar if else en varias ocaciones
 	        creo que podria controlar las condiciones con exepciones*/
         } catch (SecurityException e) {
-            System.err.println("Error al acceder al directorio porque esta protegida: " + e.getMessage());
+            System.err.println("Error al acceder al directorio porque no se tienen permisos.");
         }
         }
     }
