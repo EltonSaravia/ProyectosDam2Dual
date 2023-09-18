@@ -30,7 +30,7 @@ public static void main (String [] args) {
 			nuevoFichero.append( c);
 			nuevoFichero.write("\r\n");
 			
-			
+			//cierro el FileWriter creado
 			nuevoFichero.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
