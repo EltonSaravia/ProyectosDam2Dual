@@ -19,21 +19,20 @@ public static void main (String [] args) {
 	  String[] arrayString = {"Esto", "funciona", "?"};
 	 
 		try {
-			
+			//constructor de Filwriter con boolena para que no se elimine el texto anterior
 			FileWriter nuevoFichero = new FileWriter("C:\\Users\\Usuario\\Desktop\\prueba.txt",  true);
 			nuevoFichero.write("Hola que haces ? ");
-			
+			// bcle for each para recorrer el Array de palabaras y escribirlas.
 			for (String palabra : arrayString) {
 				 nuevoFichero.write(palabra + " ");
 	            }
 			char c = ';';
-			nuevoFichero.append( c);
-			nuevoFichero.write("\r\n");
+			nuevoFichero.append( c); //con append se añade un chart al final del texto
+			nuevoFichero.write("\r\n"); //salto de linea
 			
 			//cierro el FileWriter creado
 			nuevoFichero.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {		
 			e.printStackTrace();
 		}
 		
