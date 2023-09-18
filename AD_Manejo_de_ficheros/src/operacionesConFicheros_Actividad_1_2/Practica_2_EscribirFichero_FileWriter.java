@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Practica_2_EscribirFichero_FileWriter {
 
 public static void main (String [] args) {
-		
+	// creo un array de Strings para la segunda seccion de la practica
 	  String[] arrayString = {"Esto", "funciona", "?"};
 	 
 		try {
