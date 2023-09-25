@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
  */
 public class Practica_1_LeerFichero_FileReader {
 	public static void main (String [] args) {
-		File fichero = new File (("C:\\Users\\Usuario\\Desktop\\test.txt"));
+		String fichero = "C:\\Users\\Usuario\\Desktop\\test.txt";
 		
 		FileReader fr = null;
 		try {
