@@ -56,11 +56,13 @@ public class CrearArchivoXmlDesdeArrayList {
             }
 
             // Guardar el documento XML en un archivo
+		//primero cramos la factoria Para poder crar un transform para que pase desde un tipo DOM a xml
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+		//Dom source busca y almacena el elmento Dom que hemos creado en la linea 26 para trabajar con el 
             DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new File("empleados.xml"));
-            transformer.transform(source, result);
+            StreamResult result = new StreamResult(new File("empleados.xml"));  // es como si crearamos un traductor para los bytes que vamos a enviar
+            transformer.transform(source, result); 
 
             System.out.println("Archivo XML generado exitosamente.");
             //utilizamos la funcion or porque asi si queremos podemos controlar la primera accion
