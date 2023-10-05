@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import org.w3c.dom.DOMImplementation;
 
-public class CrearArchivoXmlDesdeArrayList {
+public class Practica1_CrearArchivoXmlDesdeArrayList {
 
 	public static void main(String[] args) {
         try {
