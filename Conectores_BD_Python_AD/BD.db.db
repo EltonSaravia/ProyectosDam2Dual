@@ -1,0 +1,35 @@
+-- Crear la tabla DEPARTAMENTO
+CREATE TABLE departamento (
+    id_departamento INT PRIMARY KEY autoincrement,
+    nombre TEXT,
+    ubicacion TEXT
+);
+
+-- Crear la tabla EMPLEADO
+CREATE TABLE empleado (
+    id_empleado INT PRIMARY KEY autoincrement,
+    nombre TEXT,
+    apellidos TEXT,
+    DNI TEXT,
+    salario REAL,
+    id_departamento INT,
+    FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento)
+);
+
+-- Crear la tabla cliente
+CREATE TABLE cliente (
+    id_cliente INT PRIMARY KEY autoincrement,
+    nombre TEXT,
+    persona_contacto TEXT,
+    tfno_contacto TEXT,
+    CIF TEXT,
+    ubicacion TEXT
+);
+
+-- Crear la tabla PROYECTO
+CREATE TABLE PROYECTO (
+    id_proyecto INT PRIMARY KEY autoincrement,
+    nombre TEXT,
+    id_departamento INT,
+    FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento)
+);
