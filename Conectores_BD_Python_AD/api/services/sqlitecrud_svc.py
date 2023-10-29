@@ -2,7 +2,7 @@ import os
 from sqlite3 import DatabaseError, connect
 from injector import inject
 
-DATABASE_NAME = os.environ['DB_NAME']
+DATABASE_NAME = os.environ['DB.db']
 
 class SqliteCrudService:
     """Servicio CRUD para cliente sqlite"""

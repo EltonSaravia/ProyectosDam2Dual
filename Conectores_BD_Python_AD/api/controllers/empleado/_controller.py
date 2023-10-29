@@ -9,7 +9,7 @@ bp = Blueprint('empleado', __name__, url_prefix=f'/api/{API_VERSION}/empleado')
 
 # Conexión a la base de datos SQLite
 def get_db_connection():
-    conn = sqlite3.connect('tu_basedatos.db')  # Reemplaza 'tu_basedatos.db' con el nombre de tu base de datos SQLite
+    conn = sqlite3.connect('BD.db')  # Reemplaza 'tu_basedatos.db' con el nombre de tu base de datos SQLite
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -24,7 +24,7 @@ def crear_empleado(sqlite_svc: SqliteCrudService):
             print('Apellido no rellenado')
         else:
             # Insertar un nuevo empleado en la base de datos
-            sql_query = 'INSERT INTO EMPLEADO (nombre, apellidos) VALUES (?, ?)'
+            sql_query = 'INSERT INTO empleado (nombre, apellidos) VALUES (?, ?)'
             params = (nombre, apellido)
             with get_db_connection() as conn:
                 conn.execute(sql_query, params)
@@ -41,7 +41,7 @@ def listar_empleados(sqlite_svc: SqliteCrudService):
             print('No se ha rellenado el nombre')
         else:
             # Buscar empleados por nombre en la base de datos
-            sql_query = 'SELECT * FROM EMPLEADO WHERE nombre = ?'
+            sql_query = 'SELECT * FROM empleado WHERE nombre = ?'
             params = (nombre,)
             with get_db_connection() as conn:
                 cursor = conn.execute(sql_query, params)
@@ -49,7 +49,7 @@ def listar_empleados(sqlite_svc: SqliteCrudService):
 
     # Si no se ha realizado una búsqueda, listar todos los empleados
     if not rows:
-        sql_query = 'SELECT * FROM EMPLEADO'
+        sql_query = 'SELECT * FROM empleado'
         with get_db_connection() as conn:
             cursor = conn.execute(sql_query)
             rows = cursor.fetchall()
@@ -64,7 +64,7 @@ def actualizar_empleado(service: SqliteCrudService):
     nuevo_apellido = request.form['nuevo_apellido']
 
     # Actualiza los datos del empleado en la base de datos
-    sql_query = 'UPDATE EMPLEADO SET nombre = ?, apellidos = ? WHERE id = ?'
+    sql_query = 'UPDATE empleado SET nombre = ?, apellidos = ? WHERE id = ?'
     params = (nuevo_nombre, nuevo_apellido, id_empleado)
     with get_db_connection() as conn:
         conn.execute(sql_query, params)
@@ -78,7 +78,7 @@ def eliminar_empleado(service: SqliteCrudService):
     id_empleado = request.form['id']
 
     # Elimina el empleado de la base de datos
-    sql_query = 'DELETE FROM EMPLEADO WHERE id = ?'
+    sql_query = 'DELETE FROM empleado WHERE id = ?'
     params = (id_empleado,)
     with get_db_connection() as conn:
         conn.execute(sql_query, params)
