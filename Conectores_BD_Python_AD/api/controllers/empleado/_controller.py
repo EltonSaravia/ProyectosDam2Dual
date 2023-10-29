@@ -1,16 +1,20 @@
-# api/basic_endpoints/__ini__.py
 import os
 from flask import Blueprint, render_template, request, url_for, redirect
 from api.services.sqlitecrud_svc import SqliteCrudService
+import sqlite3
 
 API_VERSION = os.environ.get('API_VERSION', 'v1')
 
 bp = Blueprint('empleado', __name__, url_prefix=f'/api/{API_VERSION}/empleado')
 
-# region Ejemplo formularios CRUD DAM2
+# Conexión a la base de datos SQLite
+def get_db_connection():
+    conn = sqlite3.connect('tu_basedatos.db')  # Reemplaza 'tu_basedatos.db' con el nombre de tu base de datos SQLite
+    conn.row_factory = sqlite3.Row
+    return conn
+
 @bp.route('/create/', methods=('GET', 'POST'))
 def crear_empleado(sqlite_svc: SqliteCrudService):
-    """Crear un nuevo empleado"""
     if request.method == 'POST':
         nombre = request.form['nombre']
         apellido = request.form['apellido']
@@ -19,48 +23,65 @@ def crear_empleado(sqlite_svc: SqliteCrudService):
         elif not apellido:
             print('Apellido no rellenado')
         else:
-            # TODO: Implementar correctamente la query y los parametros en la tupla
-            sql_query = '''  '''
-            params = ()
-            sqlite_svc.create(sql_query, params)
+            # Insertar un nuevo empleado en la base de datos
+            sql_query = 'INSERT INTO EMPLEADO (nombre, apellidos) VALUES (?, ?)'
+            params = (nombre, apellido)
+            with get_db_connection() as conn:
+                conn.execute(sql_query, params)
+                conn.commit()
             return redirect(url_for('empleado.listar_empleados'))
     return render_template('crear_empleado.html')
 
-
 @bp.route('/read', methods=('GET', 'POST'))
 def listar_empleados(sqlite_svc: SqliteCrudService):
-    """Recuperar un empleado"""
     rows = []
     if request.method == 'POST':
         nombre = request.form['nombre']
         if not nombre:
             print('No se ha rellenado el nombre')
         else:
-            # TODO: Implementar correctamente la query
-            sql_query = '''  '''
-            params = ()
-            rows = sqlite_svc.read(sql_query, params)
+            # Buscar empleados por nombre en la base de datos
+            sql_query = 'SELECT * FROM EMPLEADO WHERE nombre = ?'
+            params = (nombre,)
+            with get_db_connection() as conn:
+                cursor = conn.execute(sql_query, params)
+                rows = cursor.fetchall()
 
-    # Ejemplo de query que siempre saca todos los registros
-    if len(rows) == 0:
-        rows = sqlite_svc.read("SELECT * FROM Empleados", [])
+    # Si no se ha realizado una búsqueda, listar todos los empleados
+    if not rows:
+        sql_query = 'SELECT * FROM EMPLEADO'
+        with get_db_connection() as conn:
+            cursor = conn.execute(sql_query)
+            rows = cursor.fetchall()
 
     return render_template('listar_empleados.html', data=rows)
 
-
 @bp.route('/update/', methods=['POST'])
 def actualizar_empleado(service: SqliteCrudService):
-    """Actualizar empleado"""
-    # TODO: response = service.create("UPDATE..")
-    # return response
-    pass
+    # Recupera los datos de un formulario de actualización
+    id_empleado = request.form['id']
+    nuevo_nombre = request.form['nuevo_nombre']
+    nuevo_apellido = request.form['nuevo_apellido']
 
+    # Actualiza los datos del empleado en la base de datos
+    sql_query = 'UPDATE EMPLEADO SET nombre = ?, apellidos = ? WHERE id = ?'
+    params = (nuevo_nombre, nuevo_apellido, id_empleado)
+    with get_db_connection() as conn:
+        conn.execute(sql_query, params)
+        conn.commit()
 
-@bp.route('/delete/', methods=['DELETE'])
+    return redirect(url_for('empleado.listar_empleados'))
+
+@bp.route('/delete/', methods=['POST'])
 def eliminar_empleado(service: SqliteCrudService):
-    """Eliminar empleado"""
-    # TODO: response = service.create("DELETE..")
-    # return response
-    pass
+    # Recupera el ID del empleado a eliminar desde el formulario
+    id_empleado = request.form['id']
 
-# endregion
+    # Elimina el empleado de la base de datos
+    sql_query = 'DELETE FROM EMPLEADO WHERE id = ?'
+    params = (id_empleado,)
+    with get_db_connection() as conn:
+        conn.execute(sql_query, params)
+        conn.commit()
+
+    return redirect(url_for('empleado.listar_empleados'))
