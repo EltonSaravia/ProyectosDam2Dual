@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1>{% block title %} Agregar empleado: {% endblock %}</h1>
+        <form method="post">
+            <label for="nombre">Nombre</label>
+            <br>
+            <input type="text" name="nombre"
+                placeholder="Introducir nombre"
+                value="{{ request.form['nombre'] }}"></input>
+            <br>
+
+            <label for="lblapellido">Apellido</label>
+            <br>
+            <input type="text" name="apellido"
+                placeholder="Introducir apellido"
+                value="{{ request.form['apellido'] }}"></input>
+            <br>
+            
+            <br>
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
+{% endblock %}

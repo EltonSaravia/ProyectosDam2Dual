@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Buscar empleado:</h1>
+    <form method="post">
+        <label for="nombre">Nombre</label>
+        <br>
+        <input type="text" name="nombre"
+            placeholder="Introducir nombre"
+            value="{{ request.form['nombre'] }}"></input>
+        <br>
+
+        <button type="submit">Aceptar</button>
+    </form>
+
+
+    <h1>{% block title %} Lista de empleados: {% endblock %}</h1>
+        <table style="border: 1px solid black; width:100%;">
+            {% for row in data %}
+            <tr style="border: 2px solid blue;">
+                {% for cell in row %}
+                <td style="border: 2px solid blue;" align="center">{{cell}}</td>
+                {% endfor %}  
+            </tr>
+            {% endfor %}            
+        </table>
+    {% endblock %}
