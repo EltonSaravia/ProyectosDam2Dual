@@ -1,3 +1,11 @@
 {
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.sourcePaths": [
+        "Bd_embebida_java_contruccion/empresa",
+        "Bd_embebida_java_contruccion"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Bd_embebida_java_contruccion/sqlite-jdbc-3.5.7.jar"
+    ]
 }
