@@ -7,8 +7,10 @@ import java.sql.Statement;
 public class SQLiteExample {
     public static void main(String[] args) {
         try {
+            Class.forName("org.sqlite.JDBC");
             // Establecer la conexión a la base de datos SQLite
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:./BD.db");
+            Connection connection = DriverManager
+                    .getConnection("jdbc:sqlite:Bd_embebida_java_contruccion//empresa//conection//BD.db");
 
             // Crear una tabla
             Statement statement = connection.createStatement();
