@@ -3,6 +3,6 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "C:\\Users\\Usuario\\Documents\\GitHub\\ProyectosDam2Dual\\Bd_embebida_java_contruccion\\empresa\\conection"
+        "C:\\Users\\Usuario\\Documents\\GitHub\\ProyectosDam2Dual\\Bd_embebida_java_contruccion\\empresa\\conection\\sqlite-jdbc-3.5.7.jar"
     ]
 }
