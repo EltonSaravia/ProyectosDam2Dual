@@ -3,13 +3,15 @@
     "java.project.sourcePaths": [
         "Bd_embebida_java_contruccion/empresa",
         "Bd_embebida_java_contruccion",
-        "BD_SQLITE_JAVA_DAO/src"
+        "BD_SQLITE_JAVA_DAO/src",
+        "BD_SQLITE_JAVA_DAO/lib"
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "Bd_embebida_java_contruccion/sqlite-jdbc-3.5.7.jar",
         "Bd_embebida_java_contruccion/empresa/conection/sqlite-jdbc-3.5.7.jar",
         "BD_SQLITE_JAVA_DAO/sqlite-jdbc-3.5.7.jar",
-        "BD_SQLITE_JAVA_DAO/sqlite-jdbc-3.42.0.0.jar"
+        "BD_SQLITE_JAVA_DAO/sqlite-jdbc-3.42.0.0.jar",
+        "BD_SQLITE_JAVA_DAO/sqlite-jdbc.jar"
     ]
 }
