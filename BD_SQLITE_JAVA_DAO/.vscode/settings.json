@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "C:/Users/Usuario/Documents/GitHub/ProyectosDam2Dual/BD_SQLITE_JAVA_DAO/sqlite-jdbc.jar"
     ]
 }
