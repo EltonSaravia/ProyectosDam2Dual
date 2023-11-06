@@ -2,7 +2,8 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.sourcePaths": [
         "Bd_embebida_java_contruccion/empresa",
-        "Bd_embebida_java_contruccion"
+        "Bd_embebida_java_contruccion",
+        "BD_SQLITE_JAVA_DAO/src"
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
