@@ -11,6 +11,7 @@ public class Conexion {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("Error al conectar a la base de datos.");
         }
         return conectar;
     }
