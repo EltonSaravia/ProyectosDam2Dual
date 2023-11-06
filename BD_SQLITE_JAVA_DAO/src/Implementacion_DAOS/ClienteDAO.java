@@ -1,5 +1,7 @@
 package Implementacion_DAOS;
 
+/*importaciones de clases relacionadas con SQL, JDBC (Java Database Connectivity) y 
+la clase Cliente desde el paquete tablas. */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +11,10 @@ import java.util.List;
 
 import tablas.Cliente;
 
+/*
+La clase ClienteDAO implementa una interfaz IDao con parámetros de tipo Cliente e Integer, 
+lo que indica que esta clase se encarga de acceder a datos de clientes y
+ utiliza identificadores enteros para las operaciones. */
 public class ClienteDAO implements IDao<Cliente, Integer> {
     private Connection conexion;
 
@@ -16,6 +22,11 @@ public class ClienteDAO implements IDao<Cliente, Integer> {
         this.conexion = conexion;
     }
 
+    /*
+     * La clase tiene un constructor que recibe una conexión a la base de datos como
+     * parámetro.
+     * La conexión se utiliza para ejecutar consultas SQL en la base de datos.
+     */
     @Override
     public boolean createRecord(Cliente cliente) {
         try {
@@ -35,6 +46,18 @@ public class ClienteDAO implements IDao<Cliente, Integer> {
         }
     }
 
+    /*
+     * La clase implementa los métodos definidos en la interfaz IDao, que incluyen:
+     * 
+     * createRecord(Cliente cliente): Inserta un nuevo registro de cliente en la
+     * base de datos.
+     * readRecord(Integer id): Lee un registro de cliente por su identificador.
+     * updateRecord(Cliente cliente, Integer id): Actualiza un registro de cliente
+     * en la base de datos.
+     * deleteRecord(Integer id): Elimina un registro de cliente de la base de datos.
+     * readRecords(): Lee y devuelve una lista de todos los registros de clientes en
+     * la base de datos.
+     */
     @Override
     public Cliente readRecord(Integer id) {
         try {
@@ -93,6 +116,11 @@ public class ClienteDAO implements IDao<Cliente, Integer> {
         }
     }
 
+    /*
+     * Los métodos readRecord y readRecords recuperan datos de la base de datos
+     * utilizando un ResultSet y
+     * crean objetos Cliente a partir de los resultados para devolverlos.
+     */
     @Override
     public List<Cliente> readRecords() {
         List<Cliente> clientes = new ArrayList<>();

@@ -5,6 +5,13 @@ public class Departamento {
     private String nombre;
     private String ubicacion;
 
+    /*
+     * La clase tiene un constructor que recibe tres parámetros: idDepartamento,
+     * nombre y ubicacion.
+     * Cuando se crea un objeto de la clase Departamento, estos valores se utilizan
+     * para
+     * inicializar los atributos correspondientes.
+     */
     public Departamento(int idDepartamento, String nombre, String ubicacion) {
         this.idDepartamento = idDepartamento;
         this.nombre = nombre;
