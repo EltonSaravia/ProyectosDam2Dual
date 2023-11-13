@@ -31,10 +31,10 @@ public class App {
 
         do {
             System.out.println("Menú:");
-            System.out.println("1. CRUD Departamento");
-            System.out.println("2. CRUD Empleado");
-            System.out.println("3. CRUD Cliente");
-            System.out.println("4. CRUD Proyecto");
+            System.out.println("1. Departamento");
+            System.out.println("2. Empleado");
+            System.out.println("3. Cliente");
+            System.out.println("4. Proyecto");
             System.out.println("5. Salir");
 
             System.out.print("Ingrese la opción: ");
@@ -47,6 +47,7 @@ public class App {
                      */
                     DepartamentoDAO departamentoDAO = new DepartamentoDAO(cn);
                     // menu para la opcion 1 CRUD departamento
+                    System.out.println("Menú Departamento:");
                     System.out.println("1. Crear Departamento");
                     System.out.println("2. Leer Departamento");
                     System.out.println("3. Actualizar Departamento");
@@ -153,7 +154,7 @@ public class App {
                     break;
                 case 2:
 
-                    System.out.println("CRUD Empleado:");
+                    System.out.println("Menú Empleado:");
                     System.out.println("1. Crear Empleado");
                     System.out.println("2. Leer Empleado");
                     System.out.println("3. Actualizar Empleado");
@@ -261,7 +262,7 @@ public class App {
 
                 case 3:
                     // Opciones para CRUD Cliente
-                    System.out.println("CRUD Cliente:");
+                    System.out.println("Menú Cliente:");
                     System.out.println("1. Crear Cliente");
                     System.out.println("2. Leer Cliente");
                     System.out.println("3. Actualizar Cliente");
@@ -370,7 +371,7 @@ public class App {
 
                 case 4:
                     // Opciones para CRUD Proyecto
-                    System.out.println("CRUD Proyecto:");
+                    System.out.println("Menú Proyecto:");
                     System.out.println("1. Crear Proyecto");
                     System.out.println("2. Leer Proyecto");
                     System.out.println("3. Actualizar Proyecto");
