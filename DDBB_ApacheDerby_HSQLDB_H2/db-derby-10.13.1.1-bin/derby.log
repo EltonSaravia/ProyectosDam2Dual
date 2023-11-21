@@ -11,3 +11,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Nov 13 20:55:36 CET 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Mon Nov 13 20:55:36 CET 2023:
+Shutting down instance a816c00e-018b-ca3e-0446-00000e80d8c8 on database directory C:\Users\Usuario\Documents\GitHub\ProyectosDam2Dual\DDBB_ApacheDerby_HSQLDB_H2\AcademiaElton with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+----------------------------------------------------------------
