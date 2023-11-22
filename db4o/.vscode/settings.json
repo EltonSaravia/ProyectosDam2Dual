@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\alumno\\Downloads\\db4o-8.0\\lib\\db4o-8.0.276.16149-all-java5.jar"
+    ]
+}
