@@ -14,5 +14,8 @@
         "BD_SQLITE_JAVA_DAO/sqlite-jdbc-3.42.0.0.jar",
         "BD_SQLITE_JAVA_DAO/sqlite-jdbc.jar"
     ],
-    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+    "files.associations": {
+        "unistd.h": "c"
+    }
 }
