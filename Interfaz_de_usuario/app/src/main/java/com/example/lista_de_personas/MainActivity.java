@@ -12,10 +12,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  Persona p1 = new Persona(1,"Persona1","nose","nose");
-    private  Persona p2 = new Persona(1,"Persona1","nose","nose");
-    private  Persona p3 = new Persona(1, "Persona1", "nose", "nose");
-    private  Persona p4 = new Persona(1,"Persona1","nose","nose");
+    private  Persona p1 = new Persona(1,"Luis","nose","nose");
+    private  Persona p2 = new Persona(2,"Jose","nose","nose");
+    private  Persona p3 = new Persona(3, "Mario", "nose", "nose");
+    private  Persona p4 = new Persona(4,"Acnane","nose","nose");
 
     private List<Persona> listaPersonas = new ArrayList<>();
 
