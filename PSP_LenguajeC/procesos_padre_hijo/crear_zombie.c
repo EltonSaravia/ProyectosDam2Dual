@@ -12,6 +12,7 @@ int main ()
   hacer una comprobacion */
   if (pid > 0) { //compruebo que sea un numero mayor a 0
     sleep (60); /// si es el padre lo pongo a dormir  60 segundos
+    exit (0);
   }
   else { // el else entra si es el hijo porque no ha dado un numero mayor a 0
     exit (0); // con esto paramos el proceso de inmediato

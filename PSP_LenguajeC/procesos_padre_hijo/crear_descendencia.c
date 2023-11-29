@@ -14,17 +14,17 @@ int main() {
 
     pid_t padreOriginal_pid = getpid(); // Guardar el PID del padre original
     pid_t padreOriginal_pid
-    int pid;
+    pid_t pid;
 
     for (int i = 0; i < num1; i++) {
         pid = fork();
 
         if (pid == 0) {
-            printf("Soy el proceso hijo %d y mi padre es %d\n", getpid(), padre_pid);
+            printf("Soy el proceso hijo %d y mi padre es %d\n", getpid(), padreOriginal_pid);
             break;
         } else if (pid > 0) {
             // En el proceso padre, actualiza el PID del padre para el siguiente hijo.
-            padre_pid = pid;
+            padreOriginal_pid = pid;
         } else {
             perror("Error al crear el proceso");
             exit(EXIT_FAILURE);
