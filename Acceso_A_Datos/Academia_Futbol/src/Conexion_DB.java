@@ -2,11 +2,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexionBD {
-    /* Declara una variable de tipo Connection llamada conectar.  Esta variable se utilizará para almacenar la conexión a la base de datos. */
+public class Conexion_BD {
+
     private static final String URL = "jdbc:sqlite:BD_Academia_Futbol.db"; // Cambia esto según tu configuración
     private static Connection conexion;
 
+    // Método para obtener la conexión a la base de datos
     public static Connection obtenerConexion() {
         if (conexion == null) {
             try {
@@ -19,4 +20,14 @@ public class ConexionBD {
         return conexion;
     }
 
+    // Método para cerrar la conexión a la base de datos
+    public static void cerrarConexion() {
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
