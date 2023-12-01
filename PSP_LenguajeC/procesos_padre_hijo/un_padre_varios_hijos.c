@@ -14,7 +14,7 @@ scanf("%d",&num1);
 int  pid;
 for (int i = 0; i < num1; i++ )
    {
-        pid = fork ();
+        pid = fork (5);
 
     /*a partir de fork()  se ejecutan 2 programas replicados por eso hay que 
     hacer una comprobacion */
