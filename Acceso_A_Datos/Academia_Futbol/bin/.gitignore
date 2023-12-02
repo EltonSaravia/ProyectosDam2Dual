@@ -4,3 +4,17 @@
 /DirectivoDAO.class
 /IDao.class
 /Conexion_DB.class
+/Jugador.class
+/JugadorDAO.class
+/Equipo.class
+/EquipoDAO.class
+/Entrenador.class
+/EntrenadorDAO.class
+/PartidosDAO.class
+/Partidos.class
+/Gol.class
+/GolDAO.class
+/Tarjeta.class
+/TarjetaDAO.class
+/Lesion.class
+/LesionDAO.class

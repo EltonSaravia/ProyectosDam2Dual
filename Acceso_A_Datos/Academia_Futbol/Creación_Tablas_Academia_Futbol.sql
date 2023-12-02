@@ -2,6 +2,7 @@
 CREATE TABLE Jugador (
     id_jugador INTEGER PRIMARY KEY,
     nombre TEXT,
+    categoria TEXT,
     edad INTEGER,
     dorsal INTEGER,
     posicion TEXT,
@@ -11,6 +12,7 @@ CREATE TABLE Jugador (
     rojas INTEGER,
     lesionado BOOLEAN,
     partidos_sancionado INTEGER
+     FOREIGN KEY (categoria) REFERENCES Equipo(categoria);
 );
 
 CREATE TABLE Directivo (
@@ -22,6 +24,7 @@ CREATE TABLE Equipo (
     cod_equipo INTEGER PRIMARY KEY,
     estadio TEXT,
     entrenador TEXT,
+categoria TEXT,
     FOREIGN KEY (entrenador) REFERENCES Entrenador(nombre)
 );
 
