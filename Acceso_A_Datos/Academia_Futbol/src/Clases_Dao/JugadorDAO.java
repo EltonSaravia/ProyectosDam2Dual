@@ -19,8 +19,8 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         	//Consulta para sacar todos los datos
             String consulta = "INSERT INTO Jugador (nombre, apellidos, edad, dorsal, posicion, " +
                     "partidos_jugados, min_acumulados, amarillas, rojas, lesionado, " +
-                    "partidos_sancionado, categoria, equipoNombre)"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "partidos_sancionado, categoria)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
             
             
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -36,7 +36,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                 ps.setBoolean(10, jugador.isLesionado());
                 ps.setInt(11, jugador.getPartidosSancionado());
                 ps.setString(12, jugador.getCategoria());
-                ps.setString(13, jugador.getEquipoNombre());
+                
 
                 return ps.executeUpdate() > 0;
             }
@@ -68,7 +68,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                         jugador.setLesionado(rs.getBoolean("lesionado"));
                         jugador.setPartidosSancionado(rs.getInt("partidos_sancionado"));
                         jugador.setCategoria(rs.getString("categoria"));
-                        jugador.setEquipoNombre(rs.getString("equipoNombre"));
+                        
                         return jugador;
                     }
                 }
@@ -99,7 +99,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                 ps.setBoolean(10, jugador.isLesionado());
                 ps.setInt(11, jugador.getPartidosSancionado());
                 ps.setString(12, jugador.getCategoria());
-                ps.setString(13, jugador.getEquipoNombre());
+                
                 ps.setInt(14, id);
 
                 return ps.executeUpdate() > 0;
@@ -148,7 +148,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                     jugador.setLesionado(rs.getBoolean("lesionado"));
                     jugador.setPartidosSancionado(rs.getInt("partidos_sancionado"));
                     jugador.setCategoria(rs.getString("categoria"));
-                    jugador.setEquipoNombre(rs.getString("equipoNombre"));
+                    
 
                     jugadores.add(jugador);
                 }

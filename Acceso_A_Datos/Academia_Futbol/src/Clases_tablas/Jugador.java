@@ -14,27 +14,27 @@ public class Jugador {
     private boolean lesionado;
     private int partidosSancionado;
     private String categoria;
-    private String equipoNombre;
+    
 
-    // Constructor con todos los datos
-    public Jugador(int idJugador, String nombre, String apellidos, int edad, int dorsal,
-            String posicion, int partidosJugados, int minAcumulados, int amarillas,
-            int rojas, boolean lesionado, int partidosSancionado, String categoria,
-            String equipoNombre) {
-	 this.idJugador = idJugador;
+    // Constructor  datos // menos categoria que es foranea para evitar problemas 
+    // he modificado cosas pueden afectar al DAO REVISAR>>>>>>>>>>>>>>>>
+    //elimino id jugador del constructor
+    public Jugador( String nombre, String apellidos, int edad, int dorsal,
+            String posicion) {
+	 
 	 this.nombre = nombre;
 	 this.apellidos = apellidos;
 	 this.edad = edad;
 	 this.dorsal = dorsal;
 	 this.posicion = posicion;
-	 this.partidosJugados = partidosJugados;
-	 this.minAcumulados = minAcumulados;
-	 this.amarillas = amarillas;
-	 this.rojas = rojas;
-	 this.lesionado = lesionado;
-	 this.partidosSancionado = partidosSancionado;
-	 this.categoria = categoria;
-	 this.equipoNombre = equipoNombre;
+	 this.partidosJugados = 0;
+	 this.minAcumulados = 0;
+	 this.amarillas = 0;
+	 this.rojas = 0;
+	 this.lesionado = false;
+	 this.partidosSancionado = 0;
+	 
+	;
 }
 
     public Jugador() {
@@ -146,19 +146,11 @@ public class Jugador {
 		this.categoria = categoria;
 	}
 
-	public String getEquipoNombre() {
-		return equipoNombre;
-	}
 
-	public void setEquipoNombre(String equipoNombre) {
-		this.equipoNombre = equipoNombre;
-	}
-    // hashCode, equals y toString
-    // ...
 
     @Override
     public String toString() {
-        return "Jugador{" +
+        return 
                 "idJugador=" + idJugador +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
@@ -171,9 +163,9 @@ public class Jugador {
                 ", rojas=" + rojas +
                 ", lesionado=" + lesionado +
                 ", partidosSancionado=" + partidosSancionado +
-                ", categoria='" + categoria + '\'' +
-                ", equipoNombre='" + equipoNombre + '\'' +
-                '}';
+                ", categoria='" + categoria + '\'' 
+                
+                ;
     }
 
 	
