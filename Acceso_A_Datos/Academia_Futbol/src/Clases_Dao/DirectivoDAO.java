@@ -10,7 +10,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     private Connection conexion;
 
     public DirectivoDAO() {
-        this.conexion = Conexion_BD.obtenerConexion();
+        this.conexion = Conexion_DB.obtenerConexion();
     }
 
     @Override

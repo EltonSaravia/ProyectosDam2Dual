@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion_BD {
+public class Conexion_DB {
 
     private static final String URL = "jdbc:sqlite:BD_Academia_Futbol.db"; // Cambia esto según tu configuración
     private static Connection conexion;

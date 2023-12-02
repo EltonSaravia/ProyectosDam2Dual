@@ -20,6 +20,6 @@ public class App {
         }
 
         // Cerrar la conexión a la base de datos al finalizar
-        Conexion_BD.cerrarConexion();
+        Conexion_DB.cerrarConexion();
     }
 }
