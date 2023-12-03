@@ -17,10 +17,10 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         try {
         	
         	//Consulta para sacar todos los datos
-            String consulta = "INSERT INTO Jugador (nombre, apellidos, edad, dorsal, posicion, " +
-                    "partidos_jugados, min_acumulados, amarillas, rojas, lesionado, " +
-                    "partidos_sancionado, categoria)"
-                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+        	String consulta = "INSERT INTO Jugador (nombre, apellidos, edad, dorsal, posicion, " +
+                    "partidos_jugados, min_acumulados, amarillas, rojas, lesionado, " + "partidos_sancionado, categoria)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             
             
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -80,6 +80,8 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         return null;
     }
 
+    
+    // aqui hay un error al cambiar la categoria y eliminar equipo no se guarda bien jugador
     @Override
     public boolean updateRecord(Jugador jugador, Integer id) {
         try {

@@ -236,46 +236,70 @@ public class App {
             System.out.println("Datos actuales del jugador:");
             System.out.println(jugadorExistente);
 
-            // Solicitar al usuario qué dato desea actualizar
-            System.out.println("Seleccione el dato a actualizar:");
-            System.out.println("1. Nombre");
-            System.out.println("2. Apellidos");
-            System.out.println("3. Edad");
-            // Agregar más opciones según los atributos que desees actualizar
+            // Menú para seleccionar el dato a actualizar
+            int opcion;
+            do {
+                System.out.println("\nSeleccione el dato a actualizar:");
+                System.out.println("1. Nombre");
+                System.out.println("2. Apellidos");
+                System.out.println("3. Edad");
+                System.out.println("4. Dorsal");
+                System.out.println("5. Posición");
+                System.out.println("6. Partidos Jugados");
+                System.out.println("7. Equipo");
+                System.out.println("8. Volver");
+                System.out.print("Ingrese el número correspondiente al dato a actualizar: ");
+                opcion = scanner.nextInt();
+                scanner.nextLine(); // Consumir el salto de línea pendiente
 
-            System.out.print("Ingrese el número correspondiente al dato a actualizar: ");
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea pendiente
+                switch (opcion) {
+                    case 1:
+                        System.out.print("Ingrese el nuevo nombre: ");
+                        String nuevoNombre = scanner.nextLine();
+                        jugadorExistente.setNombre(nuevoNombre);
+                        break;
+                    case 2:
+                        System.out.print("Ingrese los nuevos apellidos: ");
+                        String nuevosApellidos = scanner.nextLine();
+                        jugadorExistente.setApellidos(nuevosApellidos);
+                        break;
+                    case 3:
+                        System.out.print("Ingrese la nueva edad: ");
+                        int nuevaEdad = scanner.nextInt();
+                        jugadorExistente.setEdad(nuevaEdad);
+                        break;
+                    case 4:
+                        System.out.print("Ingrese el nuevo dorsal: ");
+                        int nuevoDorsal = scanner.nextInt();
+                        jugadorExistente.setDorsal(nuevoDorsal);
+                        break;
+                    case 5:
+                        System.out.print("Ingrese la nueva posición: ");
+                        String nuevaPosicion = scanner.nextLine();
+                        jugadorExistente.setPosicion(nuevaPosicion);
+                        break;
+                    case 6:
+                        System.out.print("Ingrese la nueva cantidad de partidos jugados: ");
+                        int nuevosPartidosJugados = scanner.nextInt();
+                        jugadorExistente.setPartidosJugados(nuevosPartidosJugados);
+                        break;
+                    case 7:
+                        System.out.print("Ingrese la nueva categoria: ");
+                        String nuevaCategoria = scanner.nextLine();
+                        jugadorExistente.setCategoria(nuevaCategoria);
+                        break;
+                    case 8:
+                        System.out.println("Volviendo al menú principal.");
+                        return;
+                    default:
+                        System.out.println("Opción no válida. elija otra opcion por favor");
+                        break;
+                }
 
-            // Solicitar el nuevo valor al usuario
-            System.out.print("Ingrese el nuevo valor: ");
-            String nuevoValor = scanner.nextLine();
-
-            // Crear un nuevo objeto Jugador con los datos actualizados
-            Jugador jugadorActualizado = new Jugador(jugadorExistente.getIdJugador(),
-                    jugadorExistente.getNombre(), jugadorExistente.getApellidos(),
-                    jugadorExistente.getEdad(), jugadorExistente.getDorsal(),
-                    jugadorExistente.getPosicion(), jugadorExistente.getPartidosJugados());
-
-            // Actualizar el atributo correspondiente
-            switch (opcion) {
-                case 1:
-                    jugadorActualizado.setNombre(nuevoValor);
-                    break;
-                case 2:
-                    jugadorActualizado.setApellidos(nuevoValor);
-                    break;
-                case 3:
-                    // Actualizar más atributos según la opción seleccionada
-                    // ...
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-                    return;
-            }
+            } while (opcion != 8);
 
             // Actualizar el jugador en la base de datos
-            if (jugadorDAO.updateRecord(jugadorActualizado, idJugador)) {
+            if (jugadorDAO.updateRecord(jugadorExistente, idJugador)) {
                 System.out.println("Jugador actualizado exitosamente.");
             } else {
                 System.out.println("Error al actualizar el jugador.");
@@ -284,6 +308,7 @@ public class App {
             System.out.println("No se encontró ningún jugador con el ID proporcionado.");
         }
     }
+
 
 
     private static void eliminarJugador(Scanner scanner, JugadorDAO jugadorDAO) {

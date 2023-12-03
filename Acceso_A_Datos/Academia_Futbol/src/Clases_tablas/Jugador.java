@@ -33,7 +33,7 @@ public class Jugador {
 	 this.rojas = 0;
 	 this.lesionado = false;
 	 this.partidosSancionado = 0;
-	 
+	 	this.categoria = "ALEVIN";
 	;
 }
 

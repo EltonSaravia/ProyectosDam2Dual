@@ -31,6 +31,7 @@ categoria TEXT,
 CREATE TABLE Entrenador (
     id_entrenador INTEGER PRIMARY KEY,
     nombre TEXT,
+	apellidos TEXT,
     partidos INTEGER,
     meses_exp INTEGER
 );
