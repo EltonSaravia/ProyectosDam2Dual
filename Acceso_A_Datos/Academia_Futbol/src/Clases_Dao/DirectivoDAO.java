@@ -14,7 +14,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public boolean createRecord(Directivo directivo) {
+    public boolean guardarJugadorBD(Directivo directivo) {
         try {
             String consulta = "INSERT INTO Directivo (cargo) VALUES (?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -28,7 +28,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public Directivo readRecord(Integer id) {
+    public Directivo leerJugadorBD(Integer id) {
         try {
             String consulta = "SELECT * FROM Directivo WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -50,7 +50,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public boolean updateRecord(Directivo directivo, Integer id) {
+    public boolean actualizarJugadorBD(Directivo directivo, Integer id) {
         try {
             String consulta = "UPDATE Directivo SET cargo = ? WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -65,7 +65,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public boolean deleteRecord(Integer id) {
+    public boolean borrarJugadorBD(Integer id) {
         try {
             String consulta = "DELETE FROM Directivo WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

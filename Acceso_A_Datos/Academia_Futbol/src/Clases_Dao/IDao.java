@@ -1,13 +1,13 @@
 import java.util.List;
 
 public interface IDao<T, V> {
-    boolean createRecord(T model);
+    boolean guardarJugadorBD(T model);
 
-    T readRecord(V id);
+    T leerJugadorBD(V id);
 
-    boolean updateRecord(T model, V id);
+    boolean actualizarJugadorBD(T model, V id);
 
-    boolean deleteRecord(V id);
+    boolean borrarJugadorBD(V id);
 
     List<T> readRecords();
 }

@@ -14,7 +14,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean createRecord(Gol gol) {
+    public boolean guardarJugadorBD(Gol gol) {
         try {
             String consulta = "INSERT INTO Gol (jugador, dorsal, equipo, partido, min) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -32,7 +32,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public Gol readRecord(Integer id) {
+    public Gol leerJugadorBD(Integer id) {
         try {
             String consulta = "SELECT * FROM Gol WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -58,7 +58,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean updateRecord(Gol gol, Integer id) {
+    public boolean actualizarJugadorBD(Gol gol, Integer id) {
         try {
             String consulta = "UPDATE Gol SET jugador = ?, dorsal = ?, equipo = ?, partido = ?, min = ? WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -77,7 +77,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean deleteRecord(Integer id) {
+    public boolean borrarJugadorBD(Integer id) {
         try {
             String consulta = "DELETE FROM Gol WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

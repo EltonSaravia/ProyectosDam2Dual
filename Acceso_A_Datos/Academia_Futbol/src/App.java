@@ -11,7 +11,8 @@ public class App {
             System.out.println("Menú Inicial:");
             System.out.println("1. Modificar Datos de Partidos");
             System.out.println("2. Modificar Datos del Club");
-            System.out.println("3. Visualizar Datos");
+            System.out.println("3. Ver Datos Estadisticos");
+            System.out.println("5. Listar Ficheros");
             System.out.println("4. Salir");
             System.out.print("Ingrese la opción deseada: ");
 
@@ -20,10 +21,10 @@ public class App {
             switch (opcionPrincipal) {
                 case 1:
                     // Lógica para modificar datos de partidos
-                    System.out.println("Implementar lógica para modificar datos de partidos.");
+                    System.out.println("Menú para Modificar Datos de Partidos:");
                     break;
                 case 2:
-                    // Menú CRUD para Datos del Club
+                    // Menú para ejecutar cambios eno los datos del club
                     int opcionCrud;
 
                     do {
@@ -39,26 +40,26 @@ public class App {
 
                         switch (opcionCrud) {
                             case 1:
-                            	 gestionarCrudJugador(scanner); // esto esta mas abajo en la linea 127
+                            	 gestionarJugador(scanner); // esto esta mas abajo en la linea 127
                                  break;
                                 
                             case 2:
                                 // Lógica CRUD para Directivo
-                                System.out.println("Implementar lógica CRUD para Directivo.");
+                                
                                 break;
                             case 3:
                                 // Lógica CRUD para Equipo
-                                System.out.println("Implementar lógica CRUD para Equipo.");
+                                
                                 break;
                             case 4:
                                 // Lógica CRUD para Entrenador
-                                System.out.println("Implementar lógica CRUD para Entrenador.");
+                               
                                 break;
                             case 5:
                                 System.out.println("Volviendo al Menú Inicial.");
                                 break;
                             default:
-                                System.out.println("Opción no válida. Intente de nuevo.");
+                                System.out.println("\nOpción no válida. Intente de nuevo cono otro numero que este  en la lista.");
                                 break;
                         }
 
@@ -66,7 +67,7 @@ public class App {
 
                     break;
                 case 3:
-                    // Menú para Visualizar Datos
+                    // Menú para Visualizar Datos este lo utilizare para acceder a los ficheros cuando los cree
                     int opcionVisualizar;
 
                     do {
@@ -82,20 +83,16 @@ public class App {
 
                         switch (opcionVisualizar) {
                             case 1:
-                                // Lógica para visualizar datos de un partido
-                                System.out.println("Implementar lógica para visualizar datos de un partido.");
+                                
                                 break;
                             case 2:
-                                // Lógica para visualizar estadísticas de jugadores
-                                System.out.println("Implementar lógica para visualizar estadísticas de jugadores.");
+                                
                                 break;
                             case 3:
-                                // Lógica para visualizar estadísticas de un equipo
-                                System.out.println("Implementar lógica para visualizar estadísticas de un equipo.");
+                               
                                 break;
                             case 4:
-                                // Lógica para visualizar estadísticas de un entrenador
-                                System.out.println("Implementar lógica para visualizar estadísticas de un entrenador.");
+                               
                                 break;
                             case 5:
                                 System.out.println("Volviendo al Menú Inicial.");
@@ -124,7 +121,7 @@ public class App {
     
     
     ///////////////////////metodos para el apartado del menu modificar datos club --> Jgador/////////////////
-    private static void gestionarCrudJugador(Scanner scanner) {
+    private static void gestionarJugador(Scanner scanner) {
         JugadorDAO jugadorDAO = new JugadorDAO();
 
         int opcionCrudJugador;
@@ -146,7 +143,7 @@ public class App {
                 case 1:
                     // Crear Jugador
                     Jugador nuevoJugador = crearJugador(scanner);
-                    if (jugadorDAO.createRecord(nuevoJugador)) {
+                    if (jugadorDAO.guardarJugadorBD(nuevoJugador)) {
                         System.out.println("Jugador creado exitosamente.");
                     } else {
                         System.out.println("Error al crear el jugador.");
@@ -201,7 +198,7 @@ public class App {
 
 
 
-
+    	    
     	    // Crear un nuevo objeto Jugador con los datos proporcionados no se le envian más porque el id lo obtenemos en la base de datos
     	    return new Jugador( nombre, apellidos, edad, dorsal, posicion);
     }
@@ -214,7 +211,7 @@ public class App {
         int idJugador = scanner.nextInt();
         scanner.nextLine(); 
 
-        Jugador jugadorLeido = jugadorDAO.readRecord(idJugador);// desde read record se recuperan los datos y nos devuelve un Jugador
+        Jugador jugadorLeido = jugadorDAO.leerJugadorBD(idJugador);// desde read record se recuperan los datos y nos devuelve un Jugador
 
         if (jugadorLeido != null) {
             System.out.println("Jugador encontrado:");
@@ -229,7 +226,7 @@ public class App {
         int idJugador = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea pendiente
 
-        Jugador jugadorExistente = jugadorDAO.readRecord(idJugador);
+        Jugador jugadorExistente = jugadorDAO.leerJugadorBD(idJugador);
 
         if (jugadorExistente != null) {
             // Mostrar los datos actuales del jugador
@@ -250,7 +247,7 @@ public class App {
                 System.out.println("8. Volver");
                 System.out.print("Ingrese el número correspondiente al dato a actualizar: ");
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // Consumir el salto de línea pendiente
+                scanner.nextLine(); 
 
                 switch (opcion) {
                     case 1:
@@ -299,7 +296,7 @@ public class App {
             } while (opcion != 8);
 
             // Actualizar el jugador en la base de datos
-            if (jugadorDAO.updateRecord(jugadorExistente, idJugador)) {
+            if (jugadorDAO.actualizarJugadorBD(jugadorExistente, idJugador)) {
                 System.out.println("Jugador actualizado exitosamente.");
             } else {
                 System.out.println("Error al actualizar el jugador.");
@@ -318,19 +315,19 @@ public class App {
 
         System.out.print("Ingrese el ID del jugador a eliminar: ");
         int idJugador = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea pendiente
+        scanner.nextLine(); 
 
-        // Verificar si el jugador existe antes de intentar eliminarlo
-        Jugador jugadorExistente = jugadorDAO.readRecord(idJugador);
+        // Verificar si el jugador existe antes de intentar eliminarlo usando readRecord de nuevo
+        Jugador jugadorExistente = jugadorDAO.leerJugadorBD(idJugador);
 
         if (jugadorExistente != null) {
-            // Confirmar con el usuario antes de eliminar
+            // Confirmar con el usuario antes de eliminar / confirmacion si no es nul0
             System.out.println("¿Está seguro de que desea eliminar este jugador? (S/N)");
             String confirmacion = scanner.nextLine().trim().toLowerCase();
 
             if (confirmacion.equals("s")) {
                 // Eliminar el jugador
-                if (jugadorDAO.deleteRecord(idJugador)) {
+                if (jugadorDAO.borrarJugadorBD(idJugador)) {
                     System.out.println("Jugador eliminado exitosamente.");
                 } else {
                     System.out.println("Error al eliminar el jugador.");
@@ -344,8 +341,9 @@ public class App {
     }
 
     private static void listarJugadores(JugadorDAO jugadorDAO) {
-        // Lógica para listar todos los jugadores
+        // listar tods los jugadores
         // Utilizar el método readRecords de JugadorDAO
+    	//de momenito asi pero hay que ver si es mejor ocon tostring
         List<Jugador> jugadores = jugadorDAO.readRecords();
 
         if (!jugadores.isEmpty()) {

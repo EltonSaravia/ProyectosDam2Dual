@@ -14,7 +14,7 @@ public class EntrenadorDAO implements IDao<Entrenador, Integer> {
     }
 
     @Override
-    public boolean createRecord(Entrenador entrenador) {
+    public boolean guardarJugadorBD(Entrenador entrenador) {
         try {
             String consulta = "INSERT INTO Entrenador (nombre, partidos, meses_exp) VALUES (?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -30,7 +30,7 @@ public class EntrenadorDAO implements IDao<Entrenador, Integer> {
     }
 
     @Override
-    public Entrenador readRecord(Integer id) {
+    public Entrenador leerJugadorBD(Integer id) {
         try {
             String consulta = "SELECT * FROM Entrenador WHERE id_entrenador = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -54,7 +54,7 @@ public class EntrenadorDAO implements IDao<Entrenador, Integer> {
     }
 
     @Override
-    public boolean updateRecord(Entrenador entrenador, Integer id) {
+    public boolean actualizarJugadorBD(Entrenador entrenador, Integer id) {
         try {
             String consulta = "UPDATE Entrenador SET nombre = ?, partidos = ?, meses_exp = ? WHERE id_entrenador = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -71,7 +71,7 @@ public class EntrenadorDAO implements IDao<Entrenador, Integer> {
     }
 
     @Override
-    public boolean deleteRecord(Integer id) {
+    public boolean borrarJugadorBD(Integer id) {
         try {
             String consulta = "DELETE FROM Entrenador WHERE id_entrenador = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

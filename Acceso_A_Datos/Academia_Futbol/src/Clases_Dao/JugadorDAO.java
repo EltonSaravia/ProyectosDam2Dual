@@ -13,7 +13,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     }
 
     @Override
-    public boolean createRecord(Jugador jugador) {
+    public boolean guardarJugadorBD(Jugador jugador) {
         try {
         	
         	//Consulta para sacar todos los datos
@@ -46,10 +46,14 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         }
     }
 
+    // tengo que sacar todos los datos de un jugador con el id
+    // verifico si el jugador existe anteriormente, no devolviendo null
+    //de momento hago una query apra sacar todos los datos 
     @Override
-    public Jugador readRecord(Integer id) {
+    public Jugador leerJugadorBD(Integer id) {
         try {
             String consulta = "SELECT * FROM Jugador WHERE id_jugador = ?";
+            //hago al coonexionj a la base de datos pasandole la query 
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
                 ps.setInt(1, id);
                 try (ResultSet rs = ps.executeQuery()) {
@@ -83,7 +87,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     
     // aqui hay un error al cambiar la categoria y eliminar equipo no se guarda bien jugador
     @Override
-    public boolean updateRecord(Jugador jugador, Integer id) {
+    public boolean actualizarJugadorBD(Jugador jugador, Integer id) {
         try {
             String consulta = "UPDATE Jugador SET nombre = ?, apellidos = ?, edad = ?, dorsal = ?, " +
                     "posicion = ?, partidos_jugados = ?, min_acumulados = ?, amarillas = ?, rojas = ?, " +
@@ -113,7 +117,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     }
 
     @Override
-    public boolean deleteRecord(Integer id) {
+    public boolean borrarJugadorBD(Integer id) {
         try {
             String consulta = "DELETE FROM Jugador WHERE id_jugador = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -133,23 +137,23 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         try {
             String consulta = "SELECT * FROM Jugador";
             try (PreparedStatement ps = conexion.prepareStatement(consulta);
-                 ResultSet rs = ps.executeQuery()) {
+                 ResultSet resultadoDeQuery = ps.executeQuery()) {
 
-                while (rs.next()) {
+                while (resultadoDeQuery.next()) {
                     Jugador jugador = new Jugador();
-                    jugador.setIdJugador(rs.getInt("id_jugador"));
-                    jugador.setNombre(rs.getString("nombre"));
-                    jugador.setApellidos(rs.getString("apellidos"));
-                    jugador.setEdad(rs.getInt("edad"));
-                    jugador.setDorsal(rs.getInt("dorsal"));
-                    jugador.setPosicion(rs.getString("posicion"));
-                    jugador.setPartidosJugados(rs.getInt("partidos_jugados"));
-                    jugador.setMinAcumulados(rs.getInt("min_acumulados"));
-                    jugador.setAmarillas(rs.getInt("amarillas"));
-                    jugador.setRojas(rs.getInt("rojas"));
-                    jugador.setLesionado(rs.getBoolean("lesionado"));
-                    jugador.setPartidosSancionado(rs.getInt("partidos_sancionado"));
-                    jugador.setCategoria(rs.getString("categoria"));
+                    jugador.setIdJugador(resultadoDeQuery.getInt("id_jugador"));
+                    jugador.setNombre(resultadoDeQuery.getString("nombre"));
+                    jugador.setApellidos(resultadoDeQuery.getString("apellidos"));
+                    jugador.setEdad(resultadoDeQuery.getInt("edad"));
+                    jugador.setDorsal(resultadoDeQuery.getInt("dorsal"));
+                    jugador.setPosicion(resultadoDeQuery.getString("posicion"));
+                    jugador.setPartidosJugados(resultadoDeQuery.getInt("partidos_jugados"));
+                    jugador.setMinAcumulados(resultadoDeQuery.getInt("min_acumulados"));
+                    jugador.setAmarillas(resultadoDeQuery.getInt("amarillas"));
+                    jugador.setRojas(resultadoDeQuery.getInt("rojas"));
+                    jugador.setLesionado(resultadoDeQuery.getBoolean("lesionado"));
+                    jugador.setPartidosSancionado(resultadoDeQuery.getInt("partidos_sancionado"));
+                    jugador.setCategoria(resultadoDeQuery.getString("categoria"));
                     
 
                     jugadores.add(jugador);

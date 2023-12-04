@@ -22,7 +22,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
     }
 
     @Override
-    public boolean createRecord(Equipo equipo) {
+    public boolean guardarJugadorBD(Equipo equipo) {
         try {
             String consulta = "INSERT INTO Equipo (cod_equipo, estadio, entrenador, categoria) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -40,7 +40,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
     }
 
     @Override
-    public Equipo readRecord(Integer id) {
+    public Equipo leerJugadorBD(Integer id) {
         try {
             String consulta = "SELECT * FROM Equipo WHERE cod_equipo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -64,7 +64,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
     }
 
     @Override
-    public boolean updateRecord(Equipo equipo, Integer id) {
+    public boolean actualizarJugadorBD(Equipo equipo, Integer id) {
         try {
             String consulta = "UPDATE Equipo SET estadio = ?, entrenador = ?, categoria = ? WHERE cod_equipo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -82,7 +82,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
     }
 
     @Override
-    public boolean deleteRecord(Integer id) {
+    public boolean borrarJugadorBD(Integer id) {
         try {
             String consulta = "DELETE FROM Equipo WHERE cod_equipo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
