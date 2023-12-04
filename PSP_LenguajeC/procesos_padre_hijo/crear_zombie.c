@@ -1,7 +1,11 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
+/*
+ Con este comando podemos averiguar los procesos zombies (661) y sus padres (ppid 660).
 
+ps -A -ostat,ppid,pid,cmd | grep  defunct
+*/
 int main ()
 {
   int  pid;
