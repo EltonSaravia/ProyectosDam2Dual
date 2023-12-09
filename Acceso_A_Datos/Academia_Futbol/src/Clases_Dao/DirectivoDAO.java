@@ -164,7 +164,7 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
 
             if (obj instanceof List) {
                 directivos = (List<Directivo>) obj;
-                System.out.println("Lista de directivos cargada desde archivo binario.");
+               
             }
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo de directivos.");

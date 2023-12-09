@@ -9,6 +9,7 @@
  */
 import java.io.EOFException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -48,7 +49,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
                         }
                     }
                 }
-                guardarEnArchivo(equipo);
+                guardarEnFicheroBinario(equipo);
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -102,7 +103,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
                         }
                     }
                 }
-                guardarEnArchivo(equipo);
+               
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -193,27 +194,40 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
     
     
     /*******************************************************paraficheros*****************************************/
-    private void guardarEnArchivo(Equipo equipo) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("listaEquipos.dat", true))) {
-            oos.writeObject(equipo);
+
+    public boolean guardarEnFicheroBinario(Equipo equipo) {
+        List<Equipo> listaEquipos = cargarArchivo(); // Cargar la lista existente
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_EQUIPOS))) {
+            listaEquipos.add(equipo); // Agregar el nuevo equipo a la lista
+            oos.writeObject(listaEquipos); // Escribir la lista actualizada en el archivo
+            System.out.println("Equipo guardado en archivo binario.");
+            return true;
         } catch (IOException e) {
+            System.out.println("Error al guardar el equipo en archivo binario.");
             e.printStackTrace();
+            return false;
         }
     }
-    private void leerDesdeArchivo(List<Equipo> equipos) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("listaEquipos.dat"))) {
-            while (true) {
-                try {
-                    Equipo equipo = (Equipo) ois.readObject();
-                    equipos.add(equipo);
-                } catch (EOFException e) {
-                    break; 
-                }
+
+    public List<Equipo> cargarArchivo() {
+        List<Equipo> equipos = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_EQUIPOS))) {
+            Object obj = ois.readObject();
+
+            if (obj instanceof List) {
+                equipos = (List<Equipo>) obj;
+               
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de equipos.");
         } catch (IOException | ClassNotFoundException e) {
-            
+            System.out.println("No se pudo cargar la lista de equipos desde el archivo binario.");
             e.printStackTrace();
         }
+
+        return equipos;
     }
 
 }

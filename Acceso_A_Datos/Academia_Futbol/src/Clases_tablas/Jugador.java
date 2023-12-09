@@ -149,26 +149,12 @@ public class Jugador implements Serializable {
 
 
 
-    @Override
-    public String toString() {
-        return 
-                "idJugador=" + idJugador +
-                ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", edad=" + edad +
-                ", dorsal=" + dorsal +
-                ", posicion='" + posicion + '\'' +
-                ", partidosJugados=" + partidosJugados +
-                ", minAcumulados=" + minAcumulados +
-                ", amarillas=" + amarillas +
-                ", rojas=" + rojas +
-                ", lesionado=" + lesionado +
-                ", partidosSancionado=" + partidosSancionado +
-                ", categoria='" + categoria + '\'' 
-                
-                ;
-    }
-
+	@Override
+	public String toString() {
+	    return String.format("Jugador ID: %d  Nombre: '%s'  Apellidos: '%s'  Edad: %d  Dorsal: %d  Posición: '%s'  \nPartidos: %d  Minutos Acumulados: %d  Amarillas: %d  Rojas: %d  Lesionado: %b  Partidos Sancionado: %d  Categoría: '%s'\n\n",
+	            idJugador, nombre, apellidos, edad, dorsal, posicion, partidosJugados,
+	            minAcumulados, amarillas, rojas, lesionado, partidosSancionado, categoria);
+	}
 	
 }
 

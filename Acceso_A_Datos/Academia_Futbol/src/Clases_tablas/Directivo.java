@@ -62,10 +62,10 @@ public class Directivo implements Serializable {
         this.cargo = cargo;
     }
 
-    // Otros métodos según sea necesario
-	@Override
-	public String toString() {
-		return "Directivo [id=" + id + ", cargo=" + cargo + ", dni=" + dni + ", nombre=" + nombre + ", apellidos="
-				+ apellidos + "]";
-	}
+   
+    @Override
+    public String toString() {
+        return String.format("Directivo ID: %d  Cargo: '%s'  DNI: '%s'  Nombre: '%s'  Apellidos: '%s'",
+                id, cargo, dni, nombre, apellidos);
+    }
 }

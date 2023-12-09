@@ -76,13 +76,8 @@ public class Entrenador implements Serializable{
 
     @Override
     public String toString() {
-        return "		" +
-                "idEntrenador=" + idEntrenador +
-                ", nombre='" + nombre + '\'' +
-                ", Apellidos=" + apellidos +
-                ", partidos=" + partidos +
-                ", mesesExp=" + mesesExp +
-                ", idEquipo=" + idEquipo ;
+        return String.format("Entrenador ID: %d  Nombre: '%s'  Apellidos: '%s'  Partidos: %d  Meses de Experiencia: %d  ID del Equipo: %d",
+                idEntrenador, nombre, apellidos, partidos, mesesExp, idEquipo);
     }
 
     

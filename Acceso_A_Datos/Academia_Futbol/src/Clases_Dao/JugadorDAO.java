@@ -208,7 +208,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
 
             if (obj instanceof List) {
                 jugadores = (List<Jugador>) obj;
-                System.out.println("Lista de jugadores cargada desde archivo binario.");
+               
             }
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo de jugadores.");

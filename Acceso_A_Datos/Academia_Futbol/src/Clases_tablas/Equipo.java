@@ -56,12 +56,7 @@ public class Equipo implements Serializable {
 
     @Override
     public String toString() {
-        return "Equipo{" +
-                "codEquipo=" + codEquipo +
-                ", estadio='" + estadio + '\'' +
-                ", entrenador='" + entrenador + '\'' +
-                ", categoria='" + categoria + '\'' +
-                '}';
+        return String.format("Equipo Codigo de Equipo: %d	estadio: '%s'	entrenador: '%s'	categoria: '%s'}", codEquipo, estadio, entrenador, categoria);
     }
 
 
