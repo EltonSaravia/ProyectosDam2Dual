@@ -1,3 +1,4 @@
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +15,29 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Directivo directivo) {
+    public boolean guardar_en_BD(Directivo directivo) {
         try {
-            String consulta = "INSERT INTO Directivo (cargo) VALUES (?)";
+            String consulta = "INSERT INTO Directivo (dni, nombre, apellidos, cargo) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
-                ps.setString(1, directivo.getCargo());
-                return ps.executeUpdate() > 0;
+                ps.setString(1, directivo.getDni());
+                ps.setString(2, directivo.getNombre());
+                ps.setString(3, directivo.getApellidos());
+                ps.setString(4, directivo.getCargo());
+
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    // Obtener el ID generado para el nuevo directivo
+                    try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            directivo.setId(generatedKeys.getInt(1));
+                        } else {
+                            throw new SQLException("No se pudo obtener el ID generado para el directivo.");
+                        }
+                    }
+                }
+
+                return filasAfectadas > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,8 +45,9 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
         }
     }
 
+
     @Override
-    public Directivo leerJugadorBD(Integer id) {
+    public Directivo leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Directivo WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -37,6 +56,9 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
                     if (rs.next()) {
                         Directivo directivo = new Directivo();
                         directivo.setId(rs.getInt("id_directivo"));
+                        directivo.setDni(rs.getString("dni"));
+                        directivo.setNombre(rs.getString("nombre"));
+                        directivo.setApellidos(rs.getString("apellidos"));
                         directivo.setCargo(rs.getString("cargo"));
                         return directivo;
                     }
@@ -50,12 +72,16 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
     }
 
     @Override
-    public boolean actualizarJugadorBD(Directivo directivo, Integer id) {
+    public boolean actualizar_datos_BD(Directivo directivo, Integer id) {
         try {
-            String consulta = "UPDATE Directivo SET cargo = ? WHERE id_directivo = ?";
+            String consulta = "UPDATE Directivo SET dni = ?, nombre = ?, apellidos = ?, cargo = ? WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
-                ps.setString(1, directivo.getCargo());
-                ps.setInt(2, id);
+                ps.setString(1, directivo.getDni());
+                ps.setString(2, directivo.getNombre());
+                ps.setString(3, directivo.getApellidos());
+                ps.setString(4, directivo.getCargo());
+                ps.setInt(5, id);
+
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -64,8 +90,9 @@ public class DirectivoDAO implements IDao<Directivo, Integer> {
         }
     }
 
+
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Directivo WHERE id_directivo = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

@@ -13,7 +13,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Jugador jugador) {
+    public boolean guardar_en_BD(Jugador jugador) {
         try {
         	
         	//Consulta para sacar todos los datos
@@ -36,7 +36,19 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                 ps.setBoolean(10, jugador.isLesionado());
                 ps.setInt(11, jugador.getPartidosSancionado());
                 ps.setString(12, jugador.getCategoria());
-                
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    // Obtener el ID generado para el nuevo directivo
+                    try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                        	jugador.setIdJugador(generatedKeys.getInt(1));;
+                        } else {
+                            throw new SQLException("No se pudo obtener el ID generado para el directivo.");
+                        }
+                    }
+                }
+
 
                 return ps.executeUpdate() > 0;
             }
@@ -50,7 +62,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     // verifico si el jugador existe anteriormente, no devolviendo null
     //de momento hago una query apra sacar todos los datos 
     @Override
-    public Jugador leerJugadorBD(Integer id) {
+    public Jugador leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Jugador WHERE id_jugador = ?";
             //hago al coonexionj a la base de datos pasandole la query 
@@ -87,7 +99,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     
     // aqui hay un error al cambiar la categoria y eliminar equipo no se guarda bien jugador
     @Override
-    public boolean actualizarJugadorBD(Jugador jugador, Integer id) {
+    public boolean actualizar_datos_BD(Jugador jugador, Integer id) {
         try {
             String consulta = "UPDATE Jugador SET nombre = ?, apellidos = ?, edad = ?, dorsal = ?, " +
                     "posicion = ?, partidos_jugados = ?, min_acumulados = ?, amarillas = ?, rojas = ?, " +
@@ -117,7 +129,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
     }
 
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Jugador WHERE id_jugador = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

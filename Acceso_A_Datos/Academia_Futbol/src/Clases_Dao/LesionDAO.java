@@ -14,7 +14,7 @@ public class LesionDAO implements IDao<Lesion, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Lesion lesion) {
+    public boolean guardar_en_BD(Lesion lesion) {
         try {
             String consulta = "INSERT INTO Lesion (fecha_inicio, fecha_fin, jugador) VALUES (?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -30,7 +30,7 @@ public class LesionDAO implements IDao<Lesion, Integer> {
     }
 
     @Override
-    public Lesion leerJugadorBD(Integer id) {
+    public Lesion leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Lesion WHERE id_lesion = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -54,7 +54,7 @@ public class LesionDAO implements IDao<Lesion, Integer> {
     }
 
     @Override
-    public boolean actualizarJugadorBD(Lesion lesion, Integer id) {
+    public boolean actualizar_datos_BD(Lesion lesion, Integer id) {
         try {
             String consulta = "UPDATE Lesion SET fecha_inicio = ?, fecha_fin = ?, jugador = ? WHERE id_lesion = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -71,7 +71,7 @@ public class LesionDAO implements IDao<Lesion, Integer> {
     }
 
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Lesion WHERE id_lesion = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

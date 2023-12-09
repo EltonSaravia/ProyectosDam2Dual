@@ -14,7 +14,7 @@ public class TarjetaDAO implements IDao<Tarjeta, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Tarjeta tarjeta) {
+    public boolean guardar_en_BD(Tarjeta tarjeta) {
         try {
             String consulta = "INSERT INTO Tarjeta (roja, amarilla, jugador) VALUES (?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -30,7 +30,7 @@ public class TarjetaDAO implements IDao<Tarjeta, Integer> {
     }
 
     @Override
-    public Tarjeta leerJugadorBD(Integer id) {
+    public Tarjeta leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Tarjeta WHERE id_tarjeta = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -54,7 +54,7 @@ public class TarjetaDAO implements IDao<Tarjeta, Integer> {
     }
 
     @Override
-    public boolean actualizarJugadorBD(Tarjeta tarjeta, Integer id) {
+    public boolean actualizar_datos_BD(Tarjeta tarjeta, Integer id) {
         try {
             String consulta = "UPDATE Tarjeta SET roja = ?, amarilla = ?, jugador = ? WHERE id_tarjeta = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -71,7 +71,7 @@ public class TarjetaDAO implements IDao<Tarjeta, Integer> {
     }
 
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Tarjeta WHERE id_tarjeta = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

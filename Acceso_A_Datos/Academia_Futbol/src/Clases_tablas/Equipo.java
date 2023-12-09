@@ -3,12 +3,12 @@ import java.util.Objects;
 public class Equipo {
     private int codEquipo;
     private String estadio;
-    private String entrenador;
+    private int entrenador;
     private String categoria;
 
     // Constructor con todos los datos
-    public Equipo(int codEquipo, String estadio, String entrenador, String categoria) {
-        this.codEquipo = codEquipo;
+    public Equipo(String estadio, int entrenador, String categoria) {
+       
         this.estadio = estadio;
         this.entrenador = entrenador;
         this.categoria = categoria;
@@ -35,11 +35,11 @@ public class Equipo {
         this.estadio = estadio;
     }
 
-    public String getEntrenador() {
+    public int getEntrenador() {
         return entrenador;
     }
 
-    public void setEntrenador(String entrenador) {
+    public void setEntrenador(int entrenador) {
         this.entrenador = entrenador;
     }
 

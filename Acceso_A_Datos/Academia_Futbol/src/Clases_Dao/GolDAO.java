@@ -14,7 +14,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Gol gol) {
+    public boolean guardar_en_BD(Gol gol) {
         try {
             String consulta = "INSERT INTO Gol (jugador, dorsal, equipo, partido, min) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -32,7 +32,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public Gol leerJugadorBD(Integer id) {
+    public Gol leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Gol WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -58,7 +58,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean actualizarJugadorBD(Gol gol, Integer id) {
+    public boolean actualizar_datos_BD(Gol gol, Integer id) {
         try {
             String consulta = "UPDATE Gol SET jugador = ?, dorsal = ?, equipo = ?, partido = ?, min = ? WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -77,7 +77,7 @@ public class GolDAO implements IDao<Gol, Integer> {
     }
 
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Gol WHERE id_gol = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {

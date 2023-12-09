@@ -1,6 +1,23 @@
--- Creación de tablas Entidades 
+
+CREATE TABLE Equipo (
+    cod_equipo INTEGER PRIMARY KEY AUTOINCREMENT,
+    estadio TEXT,
+    entrenador TEXT,
+    categoria TEXT
+);
+
+CREATE TABLE Entrenador (
+    id_entrenador INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    apellidos TEXT,
+    partidos INTEGER,
+    meses_exp INTEGER,
+    id_equipo INTEGER,
+    FOREIGN KEY (id_equipo) REFERENCES Equipo(cod_equipo) 
+);
+
 CREATE TABLE Jugador (
-    id_jugador INTEGER PRIMARY KEY,
+    id_jugador INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT,
     categoria TEXT,
     edad INTEGER,
@@ -11,39 +28,24 @@ CREATE TABLE Jugador (
     amarillas INTEGER,
     rojas INTEGER,
     lesionado BOOLEAN,
-    partidos_sancionado INTEGER
-     FOREIGN KEY (categoria) REFERENCES Equipo(categoria);
+    partidos_sancionado INTEGER,
+    FOREIGN KEY (categoria) REFERENCES Pertenece(categoria)
+
 );
 
 CREATE TABLE Directivo (
-    id_directivo INTEGER PRIMARY KEY,
+    id_directivo INTEGER PRIMARY KEY AUTOINCREMENT,
     cargo TEXT
 );
 
-CREATE TABLE Equipo (
-    cod_equipo INTEGER PRIMARY KEY,
-    estadio TEXT,
-    entrenador TEXT,
-categoria TEXT,
-    FOREIGN KEY (entrenador) REFERENCES Entrenador(nombre)
-);
-
-CREATE TABLE Entrenador (
-    id_entrenador INTEGER PRIMARY KEY,
-    nombre TEXT,
-	apellidos TEXT,
-    partidos INTEGER,
-    meses_exp INTEGER
-);
-
 CREATE TABLE Partidos (
-    id_partido INTEGER PRIMARY KEY,
+    id_partido INTEGER PRIMARY KEY AUTOINCREMENT,
     equipo_local TEXT,
     equipo_visitante TEXT
 );
 
 CREATE TABLE Gol (
-    id_gol INTEGER PRIMARY KEY,
+    id_gol INTEGER PRIMARY KEY AUTOINCREMENT,
     jugador TEXT,
     dorsal INTEGER,
     equipo TEXT,
@@ -56,7 +58,7 @@ CREATE TABLE Gol (
 );
 
 CREATE TABLE Lesion (
-    id_lesion INTEGER PRIMARY KEY,
+    id_lesion INTEGER PRIMARY KEY AUTOINCREMENT,
     fecha_inicio DATE,
     fecha_fin DATE,
     jugador TEXT,
@@ -64,7 +66,7 @@ CREATE TABLE Lesion (
 );
 
 CREATE TABLE Tarjeta (
-    id_tarjeta INTEGER PRIMARY KEY,
+    id_tarjeta INTEGER PRIMARY KEY AUTOINCREMENT,
     roja BOOLEAN,
     amarilla BOOLEAN,
     jugador TEXT,
@@ -102,9 +104,11 @@ CREATE TABLE Prepara (
 CREATE TABLE Pertenece (
     id_jugador INTEGER,
     id_equipo INTEGER,
+    categoria TEXT,
     PRIMARY KEY (id_jugador, id_equipo),
     FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador),
-    FOREIGN KEY (id_equipo) REFERENCES Equipo(cod_equipo)
+    FOREIGN KEY (id_equipo) REFERENCES Equipo(cod_equipo),
+    FOREIGN KEY (id_equipo) REFERENCES Equipo(categoria)
 );
 
 CREATE TABLE Produce (

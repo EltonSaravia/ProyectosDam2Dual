@@ -1,30 +1,43 @@
-
 import java.util.Objects;
+
+
 
 public class Entrenador {
     private int idEntrenador;
-    private String nombre;
+    private String nombre, apellidos;
     private int partidos;
     private int mesesExp;
+    private int idEquipo; // Nuevo atributo para representar la asociación con el equipo
 
-    // Constructor con todos los datos
-    public Entrenador(int idEntrenador, String nombre, int partidos, int mesesExp) {
-        this.idEntrenador = idEntrenador;
+    // Constructor con todos los datos, incluyendo idEquipo
+    public Entrenador(String nombre,String apellidos, int mesesExp, int idEquipo) {
         this.nombre = nombre;
-        this.partidos = partidos;
+        this.apellidos= apellidos;
+        this.partidos = 0;
         this.mesesExp = mesesExp;
+        this.idEquipo = idEquipo;
     }
 
     // Constructor vacío
     public Entrenador() {
     }
 
-    // Getters y setters
+
+
+	// Getters y setters
     public int getIdEntrenador() {
         return idEntrenador;
     }
 
-    public void setIdEntrenador(int idEntrenador) {
+    public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public void setIdEntrenador(int idEntrenador) {
         this.idEntrenador = idEntrenador;
     }
 
@@ -52,17 +65,24 @@ public class Entrenador {
         this.mesesExp = mesesExp;
     }
 
-   
+    public int getIdEquipo() {
+        return idEquipo;
+    }
+
+    public void setIdEquipo(int idEquipo) {
+        this.idEquipo = idEquipo;
+    }
 
     @Override
     public String toString() {
-        return "Entrenador{" +
+        return "		" +
                 "idEntrenador=" + idEntrenador +
                 ", nombre='" + nombre + '\'' +
+                ", Apellidos=" + apellidos +
                 ", partidos=" + partidos +
                 ", mesesExp=" + mesesExp +
-                '}';
+                ", idEquipo=" + idEquipo ;
     }
 
-    // Puedes implementar hashCode, equals y otros métodos según tus necesidades
+    
 }

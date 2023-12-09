@@ -14,13 +14,28 @@ public class PartidosDAO implements IDao<Partidos, Integer> {
     }
 
     @Override
-    public boolean guardarJugadorBD(Partidos partido) {
+    public boolean guardar_en_BD(Partidos partido) {
         try {
             String consulta = "INSERT INTO Partidos (equipo_local, equipo_visitante) VALUES (?, ?)";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
                 ps.setString(1, partido.getEquipoLocal());
                 ps.setString(2, partido.getEquipoVisitante());
-                return ps.executeUpdate() > 0;
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    // Obtener el ID generado para el nuevo directivo
+                    try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                        	partido.setIdPartido(generatedKeys.getInt(1));
+                        } else {
+                            throw new SQLException("No se pudo obtener el ID generado para el directivo.");
+                        }
+                    }
+                }
+
+                return filasAfectadas > 0;
+                
+               
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,7 +44,7 @@ public class PartidosDAO implements IDao<Partidos, Integer> {
     }
 
     @Override
-    public Partidos leerJugadorBD(Integer id) {
+    public Partidos leer_datos_BD(Integer id) {
         try {
             String consulta = "SELECT * FROM Partidos WHERE id_partido = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -52,7 +67,7 @@ public class PartidosDAO implements IDao<Partidos, Integer> {
     }
 
     @Override
-    public boolean actualizarJugadorBD(Partidos partido, Integer id) {
+    public boolean actualizar_datos_BD(Partidos partido, Integer id) {
         try {
             String consulta = "UPDATE Partidos SET equipo_local = ?, equipo_visitante = ? WHERE id_partido = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
@@ -68,7 +83,7 @@ public class PartidosDAO implements IDao<Partidos, Integer> {
     }
 
     @Override
-    public boolean borrarJugadorBD(Integer id) {
+    public boolean borrar_datos_BD(Integer id) {
         try {
             String consulta = "DELETE FROM Partidos WHERE id_partido = ?";
             try (PreparedStatement ps = conexion.prepareStatement(consulta)) {
