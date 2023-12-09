@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Objects;
 
 
 
-public class Entrenador {
+public class Entrenador implements Serializable{
     private int idEntrenador;
     private String nombre, apellidos;
     private int partidos;

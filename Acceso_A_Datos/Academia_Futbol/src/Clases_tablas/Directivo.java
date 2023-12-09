@@ -1,7 +1,8 @@
+import java.io.Serializable;
 
-public class Directivo {
+public class Directivo implements Serializable {
     private int id;
-    private String cargo, dni,nombre, apellidos;
+    private String  dni,nombre, apellidos ,cargo;
 
     // Constructor vacío
     public Directivo() {
@@ -10,9 +11,10 @@ public class Directivo {
     // Constructor con parámetros
     public Directivo( String dni,String nombre,String apellidos, String cargo) {
         this.dni = dni;
-        this.cargo = cargo;
         this.nombre = nombre;
-        this.cargo = apellidos;
+        this.apellidos = apellidos;
+        this.cargo = cargo;
+       
     }
     
     

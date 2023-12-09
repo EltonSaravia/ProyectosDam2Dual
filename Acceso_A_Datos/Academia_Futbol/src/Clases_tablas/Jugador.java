@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Jugador {
+public class Jugador implements Serializable {
     private int idJugador;
     private String nombre;
     private String apellidos; // Nueva columna para apellidos

@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +13,7 @@ import java.util.List;
 
 public class JugadorDAO implements IDao<Jugador, Integer> {
     private Connection conexion;
-
+    private static final String ARCHIVO_JUGADORES = "listaJugadores.dat";
     public JugadorDAO() {
         this.conexion = Conexion_DB.obtenerConexion();
     }
@@ -49,7 +55,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                     }
                 }
 
-
+                guardar_en_fichero_binario(jugador);
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -167,7 +173,6 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                     jugador.setPartidosSancionado(resultadoDeQuery.getInt("partidos_sancionado"));
                     jugador.setCategoria(resultadoDeQuery.getString("categoria"));
                     
-
                     jugadores.add(jugador);
                 }
             }
@@ -178,4 +183,42 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
         return jugadores;
   
 }
+    
+
+    public boolean guardar_en_fichero_binario(Jugador jugador) {
+        List<Jugador> listaJugadores = cargarArchivo(); // Cargar la lista existente
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_JUGADORES))) {
+            listaJugadores.add(jugador); // Agregar el nuevo jugador a la lista
+            oos.writeObject(listaJugadores); // Escribir la lista actualizada en el archivo
+            System.out.println("Jugador guardado en archivo binario.");
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al guardar el jugador en archivo binario.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public List<Jugador> cargarArchivo() {
+        List<Jugador> jugadores = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_JUGADORES))) {
+            Object obj = ois.readObject();
+
+            if (obj instanceof List) {
+                jugadores = (List<Jugador>) obj;
+                System.out.println("Lista de jugadores cargada desde archivo binario.");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de jugadores.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No se pudo cargar la lista de jugadores desde el archivo binario.");
+            e.printStackTrace();
+        }
+
+        return jugadores;
+    }
+
+     
     }

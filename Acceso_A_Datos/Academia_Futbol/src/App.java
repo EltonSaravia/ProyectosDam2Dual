@@ -144,13 +144,13 @@ public class App {
                 case 1:
                     // Crear Jugador
                     Jugador nuevoJugador = crearJugador(scanner);
-                    if (jugadorDAO.guardar_en_BD(nuevoJugador)) {
+                    
+                    	jugadorDAO.guardar_en_BD(nuevoJugador);
+                    	//jugadorDAO.guardar_en_fichero_binario(nuevoJugador); /////////////// lo guardo al mismo tiempo dentro del Dao
                         System.out.println("Jugador creado exitosamente.");
                         int idGenerado = nuevoJugador.getIdJugador();
                         System.out.println("Nuevo Jugador creado con ID: " + idGenerado);
-                    } else {
-                        System.out.println("Error al crear el jugador.");
-                    }
+                    
                     break;
                 case 2:
                     // Leer Jugador
@@ -166,7 +166,7 @@ public class App {
                     break;
                 case 5:
                     // Listar Jugadores
-                    listarJugadores(jugadorDAO);
+                    listarJugadores(scanner,jugadorDAO);
                     break;
                 case 6:
                     System.out.println("Volviendo al Menú Anterior.");
@@ -190,7 +190,7 @@ public class App {
 
     	    System.out.print("Edad: ");
     	    int edad = scanner.nextInt();
-    	    scanner.nextLine(); // Consumir el salto de línea pendiente
+    	    scanner.nextLine(); 
 
     	    System.out.print("Dorsal: ");
     	    int dorsal = scanner.nextInt();
@@ -343,11 +343,28 @@ public class App {
         }
     }
 
-    private static void listarJugadores(JugadorDAO jugadorDAO) {
-        // listar tods los jugadores
-        // Utilizar el método readRecords de JugadorDAO
-    	//de momenito asi pero hay que ver si es mejor ocon tostring
-        List<Jugador> jugadores = jugadorDAO.readRecords();
+    private static void listarJugadores(Scanner scanner, JugadorDAO jugadorDAO) {
+        System.out.println("Seleccione la fuente de datos:");
+        System.out.println("1. Lista de la Base de Datos (SQLite)");
+        System.out.println("2. Lista desde el Fichero Binario");
+        System.out.print("Ingrese el número correspondiente a la opción deseada: ");
+
+        int opcionFuenteDatos = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea pendiente
+
+        List<Jugador> jugadores;
+
+        switch (opcionFuenteDatos) {
+            case 1:
+                jugadores = jugadorDAO.readRecords();
+                break;
+            case 2:
+                jugadores = jugadorDAO.cargarArchivo();
+                break;
+            default:
+                System.out.println("Opción no válida. Volviendo al menú principal.");
+                return;
+        }
 
         if (!jugadores.isEmpty()) {
             System.out.println("Listado de Jugadores:");
@@ -412,7 +429,7 @@ public class App {
                     break;
                 case 5:
                     // Listar Directivos
-                    listarDirectivos(directivoDAO);
+                    listarDirectivos(scanner,directivoDAO);
                     break;
                 case 6:
                     System.out.println("Volviendo al Menú Anterior.");
@@ -541,11 +558,15 @@ private static void actualizarDirectivo(Scanner scanner, DirectivoDAO directivoD
 	    // Lógica para eliminar un directivo
 	    System.out.print("Ingrese el ID del directivo a eliminar: ");
 	    int idDirectivo = scanner.nextInt();
-	    scanner.nextLine(); // Consumir el salto de línea pendiente
-	
+	    scanner.nextLine(); 
+	    
+	    
 	    // Verificar si el directivo existe antes de intentar eliminarlo usando leer_datos_BD
 	    Directivo directivoExistente = directivoDAO.leer_datos_BD(idDirectivo);
 	
+	    
+	    
+	    
 	    if (directivoExistente != null) {
 	        // Confirmar con el usuario antes de eliminar
 	        System.out.println("¿Está seguro de que desea eliminar este directivo? (S/N)");
@@ -566,9 +587,29 @@ private static void actualizarDirectivo(Scanner scanner, DirectivoDAO directivoD
 	    }
 	}
 
-	private static void listarDirectivos(DirectivoDAO directivoDAO) {
-	    // Lógica para listar todos los directivos
-	    List<Directivo> directivos = directivoDAO.readRecords();
+	private static void listarDirectivos(Scanner scanner, DirectivoDAO directivoDAO) {
+	    System.out.println("Seleccione la fuente de datos:");
+	    System.out.println("1. Lista de la Base de Datos (SQLite)");
+	    System.out.println("2. Lista desde el Fichero Binario");
+	    System.out.print("Ingrese el número correspondiente a la opción deseada: ");
+
+	    int opcionFuenteDatos = scanner.nextInt();
+	    scanner.nextLine(); // Consumir el salto de línea pendiente
+
+	    List<Directivo> directivos;
+
+	    switch (opcionFuenteDatos) {
+	        case 1:
+	            directivos = directivoDAO.readRecords();
+	            break;
+	        case 2:
+	            // Asegúrate de que DirectivoDAO tenga un método similar a cargarArchivo()
+	            directivos = directivoDAO.cargarArchivo();
+	            break;
+	        default:
+	            System.out.println("Opción no válida. Volviendo al menú principal.");
+	            return;
+	    }
 
 	    if (!directivos.isEmpty()) {
 	        System.out.println("Listado de Directivos:");
@@ -584,6 +625,7 @@ private static void actualizarDirectivo(Scanner scanner, DirectivoDAO directivoD
 	        System.out.println("No hay directivos registrados.");
 	    }
 	}
+
 
 	
 	

@@ -7,6 +7,12 @@
  *
  * ryuzaki12elton@gmail.com
  */
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +22,7 @@ import java.util.List;
 
 public class EquipoDAO implements IDao<Equipo, Integer> {
     private Connection conexion;
-
+    private static final String ARCHIVO_EQUIPOS = "listaEquipos.dat";
     public EquipoDAO() {
         this.conexion = Conexion_DB.obtenerConexion();
     }
@@ -42,6 +48,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
                         }
                     }
                 }
+                guardarEnArchivo(equipo);
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -95,6 +102,7 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
                         }
                     }
                 }
+                guardarEnArchivo(equipo);
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -163,6 +171,8 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
             return false;
         }
     }
+    
+    
     ////////////////// este lo he creado porque he estado realizndo pruebas al borrar un entrenador he decidido cambiar los ids a String si me da tiempo//////////////
     public boolean actualizarEntrenadorEnEquipo(int idEquipo, String nuevoEntrenador) {
         try {
@@ -175,6 +185,34 @@ public class EquipoDAO implements IDao<Equipo, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+        
+        
+        
+    }
+    
+    
+    /*******************************************************paraficheros*****************************************/
+    private void guardarEnArchivo(Equipo equipo) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("listaEquipos.dat", true))) {
+            oos.writeObject(equipo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void leerDesdeArchivo(List<Equipo> equipos) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("listaEquipos.dat"))) {
+            while (true) {
+                try {
+                    Equipo equipo = (Equipo) ois.readObject();
+                    equipos.add(equipo);
+                } catch (EOFException e) {
+                    break; 
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            
+            e.printStackTrace();
         }
     }
 
