@@ -4,21 +4,17 @@
  */
 package actividad_1_eltonsaravia;
 
-import javax.swing.JTextField;
-
 /**
  *
  * @author alumno
  */
-public class PantallaSecundaria extends javax.swing.JDialog {
+public class Editar_tarjeta extends javax.swing.JDialog {
 
-    private PantallaPrincipal pantallaPrincipal ;
     /**
-     * Creates new form PantallaSecundaria
+     * Creates new form editar_tarjeta
      */
-    public PantallaSecundaria(java.awt.Frame parent, boolean modal) {
+    public Editar_tarjeta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        pantallaPrincipal = (PantallaPrincipal)parent;
         initComponents();
     }
 
@@ -31,21 +27,36 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        volver = new javax.swing.JButton();
+        DNI_introducido = new javax.swing.JTextField();
+        DNI_insertado = new javax.swing.JLabel();
+        Aceptar = new javax.swing.JButton();
+        cancelar_editar = new javax.swing.JButton();
         text_edad = new javax.swing.JLabel();
         edad_insertado = new javax.swing.JTextField();
         nombre_insertado = new javax.swing.JTextField();
         text_nombre = new javax.swing.JLabel();
-        DNI_introducido = new javax.swing.JTextField();
-        DNI_insertado = new javax.swing.JLabel();
-        Aceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        volver.setText("Cancelar");
-        volver.addActionListener(new java.awt.event.ActionListener() {
+        DNI_introducido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverActionPerformed(evt);
+                DNI_introducidoActionPerformed(evt);
+            }
+        });
+
+        DNI_insertado.setText("DNI:");
+
+        Aceptar.setText("Aceptar");
+        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarActionPerformed(evt);
+            }
+        });
+
+        cancelar_editar.setText("Cancelar");
+        cancelar_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelar_editarActionPerformed(evt);
             }
         });
 
@@ -65,21 +76,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
         text_nombre.setText("Inserte el nombre:");
 
-        DNI_introducido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DNI_introducidoActionPerformed(evt);
-            }
-        });
-
-        DNI_insertado.setText("DNI:");
-
-        Aceptar.setText("Aceptar");
-        Aceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AceptarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +84,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                 .addGap(0, 98, Short.MAX_VALUE)
                 .addComponent(Aceptar)
                 .addGap(77, 77, 77)
-                .addComponent(volver)
+                .addComponent(cancelar_editar)
                 .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -125,19 +121,28 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelar_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+    private void DNI_introducidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DNI_introducidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DNI_introducidoActionPerformed
+
+    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         String nombre = edad_insertado.getText();
-        pantallaPrincipal.establcerNombre(nombre);
-        
+        //pantallaPrincipal
         setVisible(false);
-    }//GEN-LAST:event_volverActionPerformed
+    }//GEN-LAST:event_AceptarActionPerformed
+
+    private void cancelar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_editarActionPerformed
+        
+
+        setVisible(false);
+    }//GEN-LAST:event_cancelar_editarActionPerformed
 
     private void edad_insertadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edad_insertadoActionPerformed
         // TODO add your handling code here:
@@ -146,16 +151,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     private void nombre_insertadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_insertadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombre_insertadoActionPerformed
-
-    private void DNI_introducidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DNI_introducidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DNI_introducidoActionPerformed
-
-    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        
-        
-        setVisible(false);
-    }//GEN-LAST:event_AceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,13 +169,13 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaSecundaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editar_tarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaSecundaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editar_tarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaSecundaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editar_tarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaSecundaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Editar_tarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -188,7 +183,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PantallaSecundaria dialog = new PantallaSecundaria(new javax.swing.JFrame(), true);
+                Editar_tarjeta dialog = new Editar_tarjeta(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -204,10 +199,10 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     private javax.swing.JButton Aceptar;
     private javax.swing.JLabel DNI_insertado;
     private javax.swing.JTextField DNI_introducido;
+    private javax.swing.JButton cancelar_editar;
     private javax.swing.JTextField edad_insertado;
     private javax.swing.JTextField nombre_insertado;
     private javax.swing.JLabel text_edad;
     private javax.swing.JLabel text_nombre;
-    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

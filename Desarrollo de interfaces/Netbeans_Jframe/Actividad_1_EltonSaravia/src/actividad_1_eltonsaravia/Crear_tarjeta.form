@@ -27,27 +27,26 @@
               <EmptySpace min="0" pref="98" max="32767" attributes="0"/>
               <Component id="Aceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-              <Component id="volver" min="-2" max="-2" attributes="0"/>
+              <Component id="cancelar_crear" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="DNI_insertado" min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="text_edad" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="edad_insertado" max="32767" attributes="0"/>
-                          <Component id="DNI_introducido" max="32767" attributes="0"/>
-                      </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="DNI_insertado" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="dni_a_mostrar" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="text_nombre" min="-2" pref="137" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nombre_insertado" min="-2" pref="203" max="-2" attributes="0"/>
+                      <Component id="text_nombre" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="nombre_a_mostrar" min="-2" pref="141" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="text_edad" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="edad_a_mostrar" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -57,25 +56,25 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="text_nombre" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="nombre_insertado" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="nombre_a_mostrar" max="32767" attributes="0"/>
+                  <Component id="text_nombre" pref="24" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="edad_insertado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="text_edad" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="text_edad" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="edad_a_mostrar" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="DNI_introducido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DNI_insertado" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="DNI_insertado" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="dni_a_mostrar" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Aceptar" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
-                  <Component id="volver" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
+                  <Component id="cancelar_crear" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
@@ -83,12 +82,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="volver">
+    <Component class="javax.swing.JButton" name="cancelar_crear">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="volverActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelar_crearActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="text_edad">
@@ -96,25 +95,10 @@
         <Property name="text" type="java.lang.String" value="Inserte el edad:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="edad_insertado">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edad_insertadoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="nombre_insertado">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombre_insertadoActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="text_nombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inserte el nombre:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="DNI_introducido">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DNI_introducidoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="DNI_insertado">
       <Properties>
@@ -128,6 +112,12 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="dni_a_mostrar">
+    </Component>
+    <Component class="javax.swing.JLabel" name="nombre_a_mostrar">
+    </Component>
+    <Component class="javax.swing.JLabel" name="edad_a_mostrar">
     </Component>
   </SubComponents>
 </Form>

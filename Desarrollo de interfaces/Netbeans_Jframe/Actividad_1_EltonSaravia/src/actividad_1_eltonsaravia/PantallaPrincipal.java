@@ -92,15 +92,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_BorrarActionPerformed
 
     private void boton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_editarActionPerformed
+     Editar_tarjeta pantallaEditar = new Editar_tarjeta(this, true);
         
-        PantallaSecundaria pantallaInsertar = new PantallaSecundaria(this, true);
-        
-        pantallaInsertar.setVisible(true);
-        
+        pantallaEditar.setVisible(true);   
     }//GEN-LAST:event_boton_editarActionPerformed
 
     private void boton_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_crearActionPerformed
-        // TODO add your handling code here:
+        Crear_tarjeta pantallaCrear = new Crear_tarjeta(this, true);
+        
+        pantallaCrear.setVisible(true);
     }//GEN-LAST:event_boton_crearActionPerformed
     
     public void establcerNombre(String nombre_introducido){
