@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EjemploFicheros</string>
+    <string name="btnLeer">Leer fichero</string>
+    <string name="tvTextoFichero">"Contenido del fichero: "</string>
+</resources>
