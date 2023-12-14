@@ -175,6 +175,7 @@ public class JugadorDAO implements IDao<Jugador, Integer> {
                     
                     jugadores.add(jugador);
                 }
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
