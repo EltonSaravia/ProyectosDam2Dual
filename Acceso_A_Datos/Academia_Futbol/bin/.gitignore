@@ -1,16 +1,10 @@
-/App.class
 /Conexion_DB.class
 /Directivo.class
-/DirectivoDAO.class
 /Entrenador.class
-/EntrenadorDAO.class
 /Equipo.class
-/EquipoDAO.class
 /Gol.class
 /GolDAO.class
-/IDao.class
 /Jugador.class
-/JugadorDAO.class
 /Lesion.class
 /LesionDAO.class
 /Partidos.class
