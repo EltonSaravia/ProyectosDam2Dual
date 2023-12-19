@@ -9,12 +9,39 @@ package actividad_1_eltonsaravia;
  * @author alumno
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
+    String nombre,edad,dni;
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
+        this.nombre = "";
+        this.edad = "";
+        this.dni = "";
         initComponents();
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public String getDni() {
+        return dni;
     }
 
     /**
@@ -105,7 +132,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public void establcerNombre(String nombre_introducido){
         
-        mostrarNombre.setText("este es su nombre : " +nombre_introducido);
+        mostrarNombre.setText("Bienvenido a la app : " +nombre_introducido);
     }
     /**
      * @param args the command line arguments

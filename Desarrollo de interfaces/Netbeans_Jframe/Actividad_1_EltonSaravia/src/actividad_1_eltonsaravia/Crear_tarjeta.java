@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author alumno
+ * @author alumno Elton
  */
 public class Crear_tarjeta extends javax.swing.JDialog {
 
