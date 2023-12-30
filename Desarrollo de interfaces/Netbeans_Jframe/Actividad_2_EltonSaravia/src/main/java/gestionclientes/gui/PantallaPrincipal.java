@@ -5,7 +5,9 @@
 package gestionclientes.gui;
 
 import gestionclientes.dto.Cliente;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import logica.LogicaNegocio;
 
 /**
  *
@@ -27,20 +29,30 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         this.contadorClientes = 0;
         initComponents();
-        inicializarTabla();
+        refrescarTabla();
     }
     
-    private void inicializarTabla(){
+    private void refrescarTabla(){
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(new String [] {"Numero","Nombre","Apellidos", "Fecha Alta", "Provincia"});
+        
+        List<Cliente> listaClientes = LogicaNegocio.getListaClientes();
+            for(Cliente cliente: listaClientes){
+                
+                dtm.addRow(cliente.toArrayStrings());
+                
+            }
+        
         jTableClientes.setModel(dtm);
     }
 
-    public void aniadirCliente(Cliente cliente){
+  /*  public void aniadirCliente(Cliente cliente){
         
          DefaultTableModel dtm = (DefaultTableModel) jTableClientes.getModel();
          dtm.addRow(cliente.toArrayStrings());
-    }
+    }*******************************************************************/
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +67,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemAlta = new javax.swing.JMenuItem();
+        jMenuItemBaja = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -83,6 +96,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemAlta);
+
+        jMenuItemBaja.setText("Baja ...");
+        jMenuItemBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBajaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemBaja);
 
         jMenuBar1.add(jMenu1);
 
@@ -120,7 +141,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItemAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltaActionPerformed
         DialogoAlta dialogoAlta = new DialogoAlta(this, true);
         dialogoAlta.setVisible(true);
+        refrescarTabla();
     }//GEN-LAST:event_jMenuItemAltaActionPerformed
+
+    private void jMenuItemBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBajaActionPerformed
+        DialogoBaja dialogobaja = new DialogoBaja(this, true) ;   
+        dialogobaja.setVisible(true);
+        refrescarTabla();
+    }//GEN-LAST:event_jMenuItemBajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,6 +192,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemAlta;
+    private javax.swing.JMenuItem jMenuItemBaja;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
     // End of variables declaration//GEN-END:variables
