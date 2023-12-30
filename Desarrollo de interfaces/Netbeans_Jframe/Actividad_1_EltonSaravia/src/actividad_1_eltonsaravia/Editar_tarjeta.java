@@ -9,26 +9,21 @@ package actividad_1_eltonsaravia;
  * @author alumno
  */
 public class Editar_tarjeta extends javax.swing.JDialog {
-    private PantallaPrincipal pantallaPrincipal ;
+
+    private PantallaPrincipal pantallaPrincipal;
+
     /**
      * Creates new form editar_tarjeta
      */
     public Editar_tarjeta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        pantallaPrincipal = (PantallaPrincipal)parent;
-        if(!pantallaPrincipal.getNombre().isEmpty()){
-        nombre_insertado.setText(pantallaPrincipal.getNombre());           
-        }
-        
-        if(!pantallaPrincipal.getEdad().isEmpty()){
-            edad_insertado.setText(pantallaPrincipal.getEdad());
-        }
-        
-        if(!pantallaPrincipal.getDni().isEmpty()){
-            DNI_introducido.setText(pantallaPrincipal.getDni());
-        }
-        
+        pantallaPrincipal = (PantallaPrincipal) parent;
         initComponents();
+        nombre_insertado.setText(pantallaPrincipal.getNombre());
+        edad_insertado.setText(pantallaPrincipal.getEdad());
+        DNI_introducido.setText(pantallaPrincipal.getDni());
+
+        
     }
 
     /**
@@ -146,8 +141,7 @@ public class Editar_tarjeta extends javax.swing.JDialog {
     }//GEN-LAST:event_DNI_introducidoActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        
-        
+
         String nombre = nombre_insertado.getText();
         String edad = edad_insertado.getText();
         String dni = DNI_introducido.getText();
@@ -159,7 +153,6 @@ public class Editar_tarjeta extends javax.swing.JDialog {
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void cancelar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_editarActionPerformed
-        
 
         setVisible(false);
     }//GEN-LAST:event_cancelar_editarActionPerformed

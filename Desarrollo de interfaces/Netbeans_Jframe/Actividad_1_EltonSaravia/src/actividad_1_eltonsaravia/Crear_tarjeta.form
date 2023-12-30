@@ -23,13 +23,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="98" max="32767" attributes="0"/>
-              <Component id="Aceptar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-              <Component id="cancelar_crear" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -49,7 +42,12 @@
                       <Component id="edad_a_mostrar" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="123" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="Aceptar" min="-2" pref="202" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,24 +70,13 @@
                   <Component id="dni_a_mostrar" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="59" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Aceptar" alignment="3" min="-2" pref="67" max="-2" attributes="0"/>
-                  <Component id="cancelar_crear" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
-              </Group>
+              <Component id="Aceptar" min="-2" pref="67" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="cancelar_crear">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelar_crearActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="text_edad">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inserte el edad:"/>
@@ -107,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Aceptar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarActionPerformed"/>

@@ -20,6 +20,10 @@ public class Crear_tarjeta extends javax.swing.JDialog {
         super(parent, modal);
         pantallaPrincipal = (PantallaPrincipal)parent;
         initComponents();
+        nombre_a_mostrar.setText(pantallaPrincipal.getNombre());
+        edad_a_mostrar.setText(pantallaPrincipal.getEdad());
+        dni_a_mostrar.setText(pantallaPrincipal.getDni());
+        
     }
 
     /**
@@ -31,7 +35,6 @@ public class Crear_tarjeta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cancelar_crear = new javax.swing.JButton();
         text_edad = new javax.swing.JLabel();
         text_nombre = new javax.swing.JLabel();
         DNI_insertado = new javax.swing.JLabel();
@@ -42,20 +45,13 @@ public class Crear_tarjeta extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        cancelar_crear.setText("Cancelar");
-        cancelar_crear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelar_crearActionPerformed(evt);
-            }
-        });
-
         text_edad.setText("Inserte el edad:");
 
         text_nombre.setText("Inserte el nombre:");
 
         DNI_insertado.setText("DNI:");
 
-        Aceptar.setText("Aceptar");
+        Aceptar.setText("Volver");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarActionPerformed(evt);
@@ -66,12 +62,6 @@ public class Crear_tarjeta extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 98, Short.MAX_VALUE)
-                .addComponent(Aceptar)
-                .addGap(77, 77, 77)
-                .addComponent(cancelar_crear)
-                .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +77,11 @@ public class Crear_tarjeta extends javax.swing.JDialog {
                         .addComponent(text_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(edad_a_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,21 +99,12 @@ public class Crear_tarjeta extends javax.swing.JDialog {
                     .addComponent(DNI_insertado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dni_a_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelar_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cancelar_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_crearActionPerformed
-        //String nombre = edad_insertado.getText();
-        //pantallaPrincipal.establcerNombre(nombre);
-        
-        setVisible(false);
-    }//GEN-LAST:event_cancelar_crearActionPerformed
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         
@@ -175,7 +160,6 @@ public class Crear_tarjeta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JLabel DNI_insertado;
-    private javax.swing.JButton cancelar_crear;
     private javax.swing.JLabel dni_a_mostrar;
     private javax.swing.JLabel edad_a_mostrar;
     private javax.swing.JLabel nombre_a_mostrar;

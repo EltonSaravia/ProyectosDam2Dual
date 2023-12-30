@@ -9,14 +9,14 @@ package actividad_1_eltonsaravia;
  * @author alumno
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-    String nombre,edad,dni;
+    private String nombre,edad,dni;
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
-        this.nombre = "";
-        this.edad = "";
-        this.dni = "";
+        this.nombre = " ";
+        this.edad = " ";
+        this.dni = " ";
         initComponents();
     }
 
@@ -33,15 +33,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getEdad() {
-        return edad;
+        return this.edad;
     }
 
     public String getDni() {
-        return dni;
+        return this.dni;
     }
 
     /**
@@ -115,7 +115,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_BorrarActionPerformed
-        // TODO add your handling code here:
+        this.nombre = " ";
+        this.edad = " ";
+        this.dni = " ";
+        Crear_tarjeta pantallaCrear = new Crear_tarjeta(this, true);
+        pantallaCrear.setVisible(true);
+        establcerNombre(" ");
     }//GEN-LAST:event_boton_BorrarActionPerformed
 
     private void boton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_editarActionPerformed
@@ -131,8 +136,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_crearActionPerformed
     
     public void establcerNombre(String nombre_introducido){
+        if (this.nombre =! 
+            mostrarNombre.setText("Bienvenido a la app : " +this.nombre);
+        }
         
-        mostrarNombre.setText("Bienvenido a la app : " +nombre_introducido);
     }
     /**
      * @param args the command line arguments
