@@ -136,8 +136,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_crearActionPerformed
     
     public void establcerNombre(String nombre_introducido){
-        if (this.nombre =! 
+        if (!this.nombre.equals(" ")){
             mostrarNombre.setText("Bienvenido a la app : " +this.nombre);
+        }else{
+            mostrarNombre.setText(" " );
         }
         
     }
