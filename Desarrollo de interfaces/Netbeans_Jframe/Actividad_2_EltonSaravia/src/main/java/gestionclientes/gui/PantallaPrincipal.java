@@ -14,11 +14,11 @@ import javax.swing.table.DefaultTableModel;
 public class PantallaPrincipal extends javax.swing.JFrame {
   public static int contadorClientes;
 
-    public static int getContadorClientes() {
+    public  int getContadorClientes() {
         return contadorClientes;
     }
 
-    public static void aumentarContadorClientes() {
+    public  void aumentarContadorClientes() {
         PantallaPrincipal.contadorClientes++;
     }
     /**

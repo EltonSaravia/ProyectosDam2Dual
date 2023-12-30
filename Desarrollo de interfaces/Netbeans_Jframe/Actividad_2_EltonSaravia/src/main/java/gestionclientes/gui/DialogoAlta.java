@@ -4,6 +4,9 @@
  */
 package gestionclientes.gui;
 
+import gestionclientes.dto.Cliente;
+import java.util.Date;
+
 /**
  *
  * @author Usuario
@@ -145,10 +148,15 @@ public class DialogoAlta extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAltaActionPerformed
-        int numero = pantallaPrinpal;
+        int numero = pantallaPrinpal.getContadorClientes();
+        pantallaPrinpal.aumentarContadorClientes();
         String nombre = jTextFieldNombre.getText();
         String apellidos = jTextFieldApellidos.getText();
-
+        Date fechaAlta = (Date)jSpinnerFechaAlta.getValue();
+        String provincia = (String)jComboBoxProvincia.getSelectedItem();
+        Cliente cliente = new Cliente(numero, nombre, apellidos, fechaAlta, provincia);
+        pantallaPrinpal.aniadirCliente(cliente);
+        
 
         dispose();
     }//GEN-LAST:event_jButtonAltaActionPerformed

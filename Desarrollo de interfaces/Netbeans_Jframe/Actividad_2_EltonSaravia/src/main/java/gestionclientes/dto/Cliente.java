@@ -70,10 +70,10 @@ public class Cliente {
         String [] s = new String[5];
         
         s[0] = this.numero + "";
-        s[2] = this.nombre;
-        s[3] = this.apellidos;
-        s[4] = this.fechaAlta.toString();
-        s[5] = this.provincia;
+        s[1] = this.nombre;
+        s[2] = this.apellidos;
+        s[3] = this.fechaAlta.toString();
+        s[4] = this.provincia;
         
         return s;
     }
