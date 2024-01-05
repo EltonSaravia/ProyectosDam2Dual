@@ -4,7 +4,10 @@
  */
 package paneles;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -28,6 +31,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox = new javax.swing.JComboBox<>();
         jPanelGeneral = new javax.swing.JPanel();
         jPanelMostrarMensajes = new javax.swing.JPanel();
         jButtonInformacion = new javax.swing.JButton();
@@ -42,6 +46,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanelMostrarOpciones = new javax.swing.JPanel();
         jButtonOpciones = new javax.swing.JButton();
 
+        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelGeneral.setBackground(new java.awt.Color(0, 102, 102));
@@ -49,6 +55,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanelMostrarMensajes.setBackground(new java.awt.Color(0, 102, 102));
         jPanelMostrarMensajes.setLayout(new java.awt.GridLayout(1, 0, 20, 0));
 
+        jButtonInformacion.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonInformacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonInformacion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonInformacion.setText("Informacion");
         jButtonInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,33 +66,89 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jPanelMostrarMensajes.add(jButtonInformacion);
 
+        jButtonError.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonError.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonError.setForeground(new java.awt.Color(255, 255, 255));
         jButtonError.setText("Error");
+        jButtonError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonErrorActionPerformed(evt);
+            }
+        });
         jPanelMostrarMensajes.add(jButtonError);
 
+        jButtonWarning.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonWarning.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonWarning.setForeground(new java.awt.Color(255, 255, 255));
         jButtonWarning.setText("Warning");
+        jButtonWarning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonWarningActionPerformed(evt);
+            }
+        });
         jPanelMostrarMensajes.add(jButtonWarning);
 
         jPanelMostrarConfirmacion.setBackground(new java.awt.Color(0, 102, 102));
         jPanelMostrarConfirmacion.setLayout(new java.awt.GridLayout(2, 1, 0, 25));
 
+        jButtonConfirmacion.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonConfirmacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonConfirmacion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonConfirmacion.setText("Confirmación");
+        jButtonConfirmacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmacionActionPerformed(evt);
+            }
+        });
         jPanelMostrarConfirmacion.add(jButtonConfirmacion);
 
+        jButtonAbrirDialogo.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonAbrirDialogo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonAbrirDialogo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAbrirDialogo.setText("Abrir Dialogo");
+        jButtonAbrirDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbrirDialogoActionPerformed(evt);
+            }
+        });
         jPanelMostrarConfirmacion.add(jButtonAbrirDialogo);
 
         jPanelMostrarEntrada.setBackground(new java.awt.Color(0, 102, 102));
         jPanelMostrarEntrada.setLayout(new java.awt.GridLayout(1, 0, 25, 0));
 
+        jButtonBienvenido.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonBienvenido.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBienvenido.setText("Bienvenido");
+        jButtonBienvenido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBienvenidoActionPerformed(evt);
+            }
+        });
         jPanelMostrarEntrada.add(jButtonBienvenido);
 
+        jButtonDesplegable.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonDesplegable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonDesplegable.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDesplegable.setText("Desplegable");
+        jButtonDesplegable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDesplegableActionPerformed(evt);
+            }
+        });
         jPanelMostrarEntrada.add(jButtonDesplegable);
 
         jPanelMostrarOpciones.setLayout(new java.awt.CardLayout());
 
+        jButtonOpciones.setBackground(new java.awt.Color(153, 153, 0));
+        jButtonOpciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonOpciones.setForeground(new java.awt.Color(255, 255, 255));
         jButtonOpciones.setText("Opciones");
+        jButtonOpciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpcionesActionPerformed(evt);
+            }
+        });
         jPanelMostrarOpciones.add(jButtonOpciones, "card2");
 
         javax.swing.GroupLayout jPanelGeneralLayout = new javax.swing.GroupLayout(jPanelGeneral);
@@ -134,8 +199,68 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformacionActionPerformed
-        JOptionPane.showMessageDialog(this, "Este es el mensaje de informacion","Informacion", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Este es el mensaje de informacion","INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonInformacionActionPerformed
+
+    private void jButtonErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonErrorActionPerformed
+       JOptionPane.showMessageDialog(this, "Mensaje de error","ERROR", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_jButtonErrorActionPerformed
+
+    private void jButtonWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWarningActionPerformed
+        JOptionPane.showMessageDialog(this, "Este es un mensaje de emergencia","EMERGENCIA", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButtonWarningActionPerformed
+
+    private void jButtonConfirmacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmacionActionPerformed
+        JOptionPane.showConfirmDialog(this, "¿Quiere borrar el registro?","CONFIRMACIÓN", JOptionPane.YES_NO_CANCEL_OPTION);
+    }//GEN-LAST:event_jButtonConfirmacionActionPerformed
+
+    private void jButtonAbrirDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirDialogoActionPerformed
+               int opcionElegida = JOptionPane.showConfirmDialog(this, "¿Desea abrir una nueva ventana?","CONFIRMACIÓN", JOptionPane.YES_NO_CANCEL_OPTION);
+               if (opcionElegida == JOptionPane.YES_OPTION){
+                    DialogoCreado dialogoCreado = new DialogoCreado(this, true);
+                    dialogoCreado.setVisible(true);
+                   
+               }
+    }//GEN-LAST:event_jButtonAbrirDialogoActionPerformed
+
+    private void jButtonBienvenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBienvenidoActionPerformed
+        String nombre = JOptionPane.showInputDialog(this,"Indica tú nombre","BIENVENIDO" ,JOptionPane.QUESTION_MESSAGE);
+        if(!nombre.isBlank()){
+                JOptionPane.showMessageDialog(this,"Hola " + nombre,"BIENVENIDO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonBienvenidoActionPerformed
+
+    private void jButtonDesplegableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesplegableActionPerformed
+       String[] colores = { "Rojo", "Verde", "Azul" }; // puedo crear objetos sin nesecidad de que se vean en una interfaz
+    JComboBox<String> comboBox = new JComboBox<>(colores);
+    JLabel etiqueta = new JLabel("Elige un color: ");
+      //Con el j panel le puedo meter lo que yo quiera y luego pasarlo como parametro al JOptionpal
+    JPanel panel = new JPanel();
+    panel.add(etiqueta);
+    panel.add(comboBox); 
+    
+    int seleccion = JOptionPane.showConfirmDialog(this, panel, "DESPLEGABLE", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+    
+    if (seleccion == JOptionPane.OK_OPTION) {
+    String colorSeleccionado = (String) comboBox.getSelectedItem();
+   
+    JOptionPane.showMessageDialog(this, "Has seleccionado: " + colorSeleccionado);
+    }
+    }//GEN-LAST:event_jButtonDesplegableActionPerformed
+
+    private void jButtonOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpcionesActionPerformed
+        Object[] opciones = { "Opción 1", "Opción 2", "Opción 3" };
+        int seleccion = JOptionPane.showOptionDialog(this,
+                                             "Selecciona un botón", // El mensaje
+                                             "OPCIONES",  // El título del diálogo
+                                             JOptionPane.DEFAULT_OPTION,
+                                             JOptionPane.QUESTION_MESSAGE,
+                                             null,
+                                             opciones,     // Aqui debo pasar el array de las opciones
+                                             opciones[2]); // La opción predeterminada
+        
+    }//GEN-LAST:event_jButtonOpcionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,6 +306,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInformacion;
     private javax.swing.JButton jButtonOpciones;
     private javax.swing.JButton jButtonWarning;
+    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JPanel jPanelGeneral;
     private javax.swing.JPanel jPanelMostrarConfirmacion;
     private javax.swing.JPanel jPanelMostrarEntrada;
