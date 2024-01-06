@@ -7,6 +7,8 @@ package OrdenarTabla.interfaz;
 import OrdenarTabla.gto.Alumno;
 import OrdenarTabla.logica.LogicaAlumnos;
 import java.util.Date;
+import javax.swing.JTable;
+import OrdenarTabla.interfaz.TableModel.AlumnosTableModel;
 
 /**
  *
@@ -19,8 +21,10 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
      */
     public PantallaAnadirAlumno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        pantallaPrinpal = (PantallaPrincipal)parent;
         initComponents();
+        
+        pantallaPrinpal = (PantallaPrincipal)parent;
+        
     }
 
     /**

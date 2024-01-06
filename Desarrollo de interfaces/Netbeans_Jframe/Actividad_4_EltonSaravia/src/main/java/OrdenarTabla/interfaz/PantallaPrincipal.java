@@ -5,9 +5,15 @@
 package OrdenarTabla.interfaz;
 
 import OrdenarTabla.gto.Alumno;
-import OrdenarTabla.logica.LogicaAlumnos;
+import OrdenarTabla.interfaz.TableModel.AlumnosTableModel;
+import OrdenarTabla.logica.*;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 
 /**
  *
@@ -20,9 +26,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal() {
         initComponents();
-        refrescarTabla();
+        jTableAlumnos.setModel(new AlumnosTableModel(LogicaAlumnos.getListaAlumnos()));
+        rellenarTablaAlumnos();
     }
 
+    
+    private void rellenarTablaAlumnos(){
+        AlumnosTableModel tma = new AlumnosTableModel(LogicaAlumnos.getListaAlumnos());
+        jTableAlumnos.setModel(tma);
+        
+        TableRowSorter<AlumnosTableModel> sorter = new TableRowSorter<>(tma);
+        jTableAlumnos.setRowSorter(sorter);
+        
+        List<SortKey> sortKeys = new ArrayList <>();
+        sortKeys.add(new SortKey(3, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+        /*****************************************/
+        
+    }
+    
     private void refrescarTabla(){
         DefaultTableModel dtm = new DefaultTableModel();
             dtm.setColumnIdentifiers(new String [] {"Nombre","Asignatura","Curso", "Nota", "Repetidor"});
@@ -70,6 +92,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAlumnosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAlumnos);
 
         jButtonSeleccionar.setText("Seleccionar");
@@ -151,8 +178,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItemAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAnadirActionPerformed
         PantallaAnadirAlumno pantallaAddAlumno = new PantallaAnadirAlumno(this, true);
         pantallaAddAlumno.setVisible(true);
-        refrescarTabla();
+        rellenarTablaAlumnos();
     }//GEN-LAST:event_jMenuItemAnadirActionPerformed
+
+    private void jTableAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlumnosMouseClicked
+        int seleccionado = jTableAlumnos.convertRowIndexToModel(jTableAlumnos.getSelectedRow());
+        jLabelSeleccionar.setText(LogicaAlumnos.getListaAlumnos().get(seleccionado).getNombre());
+    }//GEN-LAST:event_jTableAlumnosMouseClicked
 
     /**
      * @param args the command line arguments
