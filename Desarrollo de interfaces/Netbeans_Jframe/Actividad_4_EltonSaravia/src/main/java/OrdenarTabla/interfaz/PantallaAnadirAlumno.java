@@ -4,17 +4,22 @@
  */
 package OrdenarTabla.interfaz;
 
+import OrdenarTabla.gto.Alumno;
+import OrdenarTabla.logica.LogicaAlumnos;
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
 public class PantallaAnadirAlumno extends javax.swing.JDialog {
-
+    private PantallaPrincipal pantallaPrinpal;
     /**
      * Creates new form PantallaAnadirAlumno
      */
     public PantallaAnadirAlumno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        pantallaPrinpal = (PantallaPrincipal)parent;
         initComponents();
     }
 
@@ -55,7 +60,7 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
 
         jLabelCurso.setText("Curso");
 
-        jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
         jComboBoxCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCursoActionPerformed(evt);
@@ -66,11 +71,23 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
 
         jLabelNota.setText("Nota");
 
+        jSpinnerNota.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+
         jLabelRepetidor.setText("Repetidor");
 
         jButtonAnadirAlumno.setText("Añadir Alumno");
+        jButtonAnadirAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnadirAlumnoActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,9 +142,9 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
                     .addComponent(jLabelNota, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerNota, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelRepetidor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxRepetidor))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxRepetidor)
+                    .addComponent(jLabelRepetidor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonAnadirAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,47 +163,26 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCursoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaAnadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaAnadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaAnadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaAnadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                PantallaAnadirAlumno dialog = new PantallaAnadirAlumno(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void jButtonAnadirAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirAlumnoActionPerformed
+        
+        String nombre = jTextFieldNombre.getText();
+        String asignatura = jTextFieldAsignatura.getText();
+        int curso = Integer.parseInt((String) jComboBoxCurso.getSelectedItem());
+        int nota = (int)jSpinnerNota.getValue();
+        boolean repètidor = jCheckBoxRepetidor.isSelected();
+        Alumno alumno = new Alumno(nombre, asignatura, curso, nota, repètidor);
+        
+        LogicaAlumnos.aniadirAlumno(alumno);
+        
+
+        dispose();
+    }//GEN-LAST:event_jButtonAnadirAlumnoActionPerformed
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnadirAlumno;

@@ -13,7 +13,7 @@ import java.util.List;
  * @author Usuario
  */
 public class LogicaAlumnos {
-    private static List<Alumno> listaAlumnos = new ArrayList<>();
+    private static ArrayList<Alumno> listaAlumnos = new ArrayList<>();
     
     public static void aniadirAlumno (Alumno alumno){
             listaAlumnos.add(alumno);
