@@ -47,7 +47,13 @@ public class AlumnosTableModel extends AbstractTableModel{
                  return listAlumno.get(rowIndex).getNota();
                  
              case 4:
-                 return listAlumno.get(rowIndex).isRepetidor();
+                    String repetidor;
+                 if(listAlumno.get(rowIndex).isRepetidor() == true){
+                    repetidor = "si";
+                }else{
+                    repetidor = "no";
+                }
+                 return repetidor;
         }
         return null;
     }

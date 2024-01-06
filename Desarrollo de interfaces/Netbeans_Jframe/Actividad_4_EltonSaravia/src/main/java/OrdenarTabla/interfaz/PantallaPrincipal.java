@@ -9,6 +9,7 @@ import OrdenarTabla.interfaz.TableModel.AlumnosTableModel;
 import OrdenarTabla.logica.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.RowFilter;
 import javax.swing.RowSorter;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
@@ -20,7 +21,8 @@ import javax.swing.table.*;
  * @author Usuario
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
+    
+    private TableRowSorter<AlumnosTableModel> sorter;
     /**
      * Creates new form PantallaPrincipal
      */
@@ -35,7 +37,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         AlumnosTableModel tma = new AlumnosTableModel(LogicaAlumnos.getListaAlumnos());
         jTableAlumnos.setModel(tma);
         
-        TableRowSorter<AlumnosTableModel> sorter = new TableRowSorter<>(tma);
+        sorter = new TableRowSorter<>(tma);
         jTableAlumnos.setRowSorter(sorter);
         
         List<SortKey> sortKeys = new ArrayList <>();
@@ -102,6 +104,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonSeleccionar.setText("Seleccionar");
 
         jButtonFiltrar.setText("Filtrar");
+        jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltrarActionPerformed(evt);
+            }
+        });
 
         jTextFieldFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +192,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         int seleccionado = jTableAlumnos.convertRowIndexToModel(jTableAlumnos.getSelectedRow());
         jLabelSeleccionar.setText(LogicaAlumnos.getListaAlumnos().get(seleccionado).getNombre());
     }//GEN-LAST:event_jTableAlumnosMouseClicked
+
+    private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
+        
+        RowFilter<AlumnosTableModel,Integer> rf = RowFilter.regexFilter(jTextFieldFiltrar.getText(), 0);
+        sorter.setRowFilter(rf);
+    }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
     /**
      * @param args the command line arguments
