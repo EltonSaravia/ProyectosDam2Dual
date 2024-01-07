@@ -76,13 +76,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTextFieldFiltrar = new javax.swing.JTextField();
         jLabelSeleccionar = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuAlumno = new javax.swing.JMenu();
         jMenuItemAnadir = new javax.swing.JMenuItem();
         jMenuItemEliminar = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuFiltros = new javax.swing.JMenu();
+        jMenuItemMostrarAprobados = new javax.swing.JMenuItem();
+        jMenuItemMostrarNoAprobados = new javax.swing.JMenuItem();
+        jMenuItemMostrarRepetidores = new javax.swing.JMenuItem();
+        jMenuItemMostrarTodos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 102));
 
+        jTableAlumnos.setBackground(new java.awt.Color(0, 102, 102));
+        jTableAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTableAlumnos.setForeground(new java.awt.Color(255, 255, 255));
         jTableAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -101,8 +109,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableAlumnos);
 
+        jButtonSeleccionar.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSeleccionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonSeleccionar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSeleccionar.setText("Seleccionar");
 
+        jButtonFiltrar.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonFiltrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonFiltrar.setText("Filtrar");
         jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,8 +131,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jMenuBar1.setBackground(new java.awt.Color(0, 102, 102));
+        jMenuBar1.setForeground(new java.awt.Color(0, 102, 102));
 
-        jMenu1.setText("Alumno");
+        jMenuAlumno.setText("Alumno");
 
         jMenuItemAnadir.setText("Añadir ...");
         jMenuItemAnadir.addActionListener(new java.awt.event.ActionListener() {
@@ -126,15 +141,48 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jMenuItemAnadirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemAnadir);
+        jMenuAlumno.add(jMenuItemAnadir);
 
         jMenuItemEliminar.setText("Eliminar ...");
-        jMenu1.add(jMenuItemEliminar);
+        jMenuAlumno.add(jMenuItemEliminar);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuAlumno);
 
-        jMenu2.setText("Filtros");
-        jMenuBar1.add(jMenu2);
+        jMenuFiltros.setText("Filtros");
+
+        jMenuItemMostrarAprobados.setText("Mostrar Aprobados");
+        jMenuItemMostrarAprobados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostrarAprobadosActionPerformed(evt);
+            }
+        });
+        jMenuFiltros.add(jMenuItemMostrarAprobados);
+
+        jMenuItemMostrarNoAprobados.setText("Mostrar no aprobados");
+        jMenuItemMostrarNoAprobados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostrarNoAprobadosActionPerformed(evt);
+            }
+        });
+        jMenuFiltros.add(jMenuItemMostrarNoAprobados);
+
+        jMenuItemMostrarRepetidores.setText("Mostrar Repetidores");
+        jMenuItemMostrarRepetidores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostrarRepetidoresActionPerformed(evt);
+            }
+        });
+        jMenuFiltros.add(jMenuItemMostrarRepetidores);
+
+        jMenuItemMostrarTodos.setText("Mostrar Todos");
+        jMenuItemMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMostrarTodosActionPerformed(evt);
+            }
+        });
+        jMenuFiltros.add(jMenuItemMostrarTodos);
+
+        jMenuBar1.add(jMenuFiltros);
 
         setJMenuBar(jMenuBar1);
 
@@ -199,6 +247,43 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         sorter.setRowFilter(rf);
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
+    private void jMenuItemMostrarAprobadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarAprobadosActionPerformed
+  RowFilter<AlumnosTableModel, Integer> filtroAprobados = new RowFilter<AlumnosTableModel, Integer>() {
+        public boolean include(Entry<? extends AlumnosTableModel, ? extends Integer> entry) {
+            int nota = Integer.parseInt(entry.getStringValue(3));
+            return nota >= 5; // Filtra para mostrar solo aprobados (nota >= 5)
+        }
+    };
+
+    sorter.setRowFilter(filtroAprobados);
+    }//GEN-LAST:event_jMenuItemMostrarAprobadosActionPerformed
+
+    private void jMenuItemMostrarNoAprobadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarNoAprobadosActionPerformed
+        RowFilter<AlumnosTableModel, Integer> filtroAprobados = new RowFilter<AlumnosTableModel, Integer>() {
+        public boolean include(Entry<? extends AlumnosTableModel, ? extends Integer> entry) {
+            int nota = Integer.parseInt(entry.getStringValue(3));
+            return nota <= 5; 
+        }
+    };
+
+    sorter.setRowFilter(filtroAprobados);
+    }//GEN-LAST:event_jMenuItemMostrarNoAprobadosActionPerformed
+
+    private void jMenuItemMostrarRepetidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarRepetidoresActionPerformed
+        RowFilter<AlumnosTableModel, Integer> filtroRepetidores = new RowFilter<AlumnosTableModel, Integer>() {
+        public boolean include(Entry<? extends AlumnosTableModel, ? extends Integer> entry) {
+            String repetidor = entry.getStringValue(4);
+            return "si".equalsIgnoreCase(repetidor); 
+        }
+    };
+
+    sorter.setRowFilter(filtroRepetidores);
+    }//GEN-LAST:event_jMenuItemMostrarRepetidoresActionPerformed
+
+    private void jMenuItemMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMostrarTodosActionPerformed
+        sorter.setRowFilter(null); // Elimina cualquier filtro aplicado
+    }//GEN-LAST:event_jMenuItemMostrarTodosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,11 +323,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JLabel jLabelSeleccionar;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuAlumno;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuFiltros;
     private javax.swing.JMenuItem jMenuItemAnadir;
     private javax.swing.JMenuItem jMenuItemEliminar;
+    private javax.swing.JMenuItem jMenuItemMostrarAprobados;
+    private javax.swing.JMenuItem jMenuItemMostrarNoAprobados;
+    private javax.swing.JMenuItem jMenuItemMostrarRepetidores;
+    private javax.swing.JMenuItem jMenuItemMostrarTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAlumnos;
     private javax.swing.JTextField jTextFieldFiltrar;

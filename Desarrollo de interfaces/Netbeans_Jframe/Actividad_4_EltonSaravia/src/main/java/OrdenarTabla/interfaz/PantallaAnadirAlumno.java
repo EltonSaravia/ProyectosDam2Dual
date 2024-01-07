@@ -51,6 +51,7 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabelNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNombre.setText("Nombre");
         jLabelNombre.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -62,6 +63,7 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
             }
         });
 
+        jLabelCurso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelCurso.setText("Curso");
 
         jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
@@ -71,14 +73,20 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
             }
         });
 
+        jLabelAsignatura.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelAsignatura.setText("Asignatura");
 
+        jLabelNota.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNota.setText("Nota");
 
         jSpinnerNota.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
+        jLabelRepetidor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelRepetidor.setText("Repetidor");
 
+        jButtonAnadirAlumno.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonAnadirAlumno.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonAnadirAlumno.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAnadirAlumno.setText("Añadir Alumno");
         jButtonAnadirAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +94,9 @@ public class PantallaAnadirAlumno extends javax.swing.JDialog {
             }
         });
 
+        jButtonCancelar.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
