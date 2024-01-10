@@ -22,8 +22,6 @@ public class Editar_tarjeta extends javax.swing.JDialog {
         nombre_insertado.setText(pantallaPrincipal.getNombre());
         edad_insertado.setText(pantallaPrincipal.getEdad());
         DNI_introducido.setText(pantallaPrincipal.getDni());
-
-        
     }
 
     /**
