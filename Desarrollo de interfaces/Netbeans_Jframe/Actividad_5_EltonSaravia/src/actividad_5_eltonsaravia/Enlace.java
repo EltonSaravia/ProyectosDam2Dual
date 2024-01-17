@@ -17,6 +17,10 @@ public class Enlace extends JLabel implements Serializable{
     
     private String navegador;
     private String url;
+    
+    public Enlace(){
+        
+    }
 
     public String getNavegador() {
         return navegador;
@@ -34,7 +38,7 @@ public class Enlace extends JLabel implements Serializable{
         this.url = url;
     }
     
-    private void btn_StartActionPerformed(java.awt.event.ActionEvent evt)    
+   /* private void btn_StartActionPerformed(java.awt.event.ActionEvent evt)    
     {
       String[] command ={"CMD", "/C", "MyCmdCommand"};
       ProcessBuilder probuilder = new ProcessBuilder( command );
@@ -49,8 +53,8 @@ public class Enlace extends JLabel implements Serializable{
       catch(IOException e)
       {
             JOptionPane.showMessageDialog(this, e);
-      }
-    }
+      }*/
+   // }
     
 }
 
