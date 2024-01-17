@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ejemplo Fragmentos</string>
+
+    <string name="mainActivity">Esta es la actividad principal</string>
+    <string name="fragmento1">Este es el Fragmento 1</string>
+    <string name="fragmento2">Este es el Fragmento 2</string>
+
+</resources>
