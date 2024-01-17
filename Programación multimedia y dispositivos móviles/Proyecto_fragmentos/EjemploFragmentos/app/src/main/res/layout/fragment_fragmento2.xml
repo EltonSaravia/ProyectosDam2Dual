@@ -11,4 +11,32 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="@string/fragmento2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese un texto"
+            android:layout_marginTop="100dp"/>
+
+        <Button
+            android:id="@+id/buttonCountLetters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextText"
+            android:layout_marginTop="58dp"
+            android:text="Contar letras" />
+
+        <TextView
+            android:id="@+id/textViewLetterCount"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/buttonCountLetters"
+            android:layout_marginTop="15dp" />
+    </RelativeLayout>
+
 </FrameLayout>
