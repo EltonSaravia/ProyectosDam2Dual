@@ -30,6 +30,8 @@ public class Fragmento1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragmento1, container, false);
 
@@ -39,13 +41,13 @@ public class Fragmento1 extends Fragment {
 
         buttonCheckPrime.setOnClickListener(v -> {
             int number = Integer.parseInt(editTextNumber.getText().toString());
-            textViewResult.setText(isPrime(number) ? "Es primo" : "No es primo");
+            textViewResult.setText(esPrimo(number) ? "Es primo" : "No es primo");
         });
 
         return view;
     }
 
-    private boolean isPrime(int number) {
+    private boolean esPrimo(int number) {
         if (number <= 1) {
             return false;
         }
