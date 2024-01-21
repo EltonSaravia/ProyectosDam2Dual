@@ -28,59 +28,51 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonBoton = new javax.swing.JButton();
+        cOMPONENTE12 = new actividad_5_eltonsaravia.COMPONENTE1();
+        cOMPONENTE11 = new actividad_5_eltonsaravia.COMPONENTE1();
+        componente21 = new actividad_5_eltonsaravia.Componente2();
+
+        cOMPONENTE12.setText("cOMPONENTE12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonBoton.setBackground(new java.awt.Color(100, 30, 22));
-        jButtonBoton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButtonBoton.setForeground(new java.awt.Color(33, 47, 60));
-        jButtonBoton.setText("Boton");
-        jButtonBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonBotonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonBotonMouseExited(evt);
-            }
-        });
-        jButtonBoton.addActionListener(new java.awt.event.ActionListener() {
+        cOMPONENTE11.setText("cOMPONENTE11");
+        cOMPONENTE11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBotonActionPerformed(evt);
+                cOMPONENTE11ActionPerformed(evt);
             }
         });
+
+        componente21.setNavegador("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+        componente21.setPaginaWeb("https://www.youtube.com/shorts/dhg1tmTcJdE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jButtonBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(componente21, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cOMPONENTE11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jButtonBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(cOMPONENTE11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addComponent(componente21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBotonMouseEntered
-        jButtonBoton.setBackground(Color.blue);
-    }//GEN-LAST:event_jButtonBotonMouseEntered
-
-    private void jButtonBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBotonActionPerformed
+    private void cOMPONENTE11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cOMPONENTE11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBotonActionPerformed
-
-    private void jButtonBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBotonMouseExited
-        jButtonBoton.setBackground(Color.getHSBColor(6,78,39));
-    }//GEN-LAST:event_jButtonBotonMouseExited
+    }//GEN-LAST:event_cOMPONENTE11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,6 +110,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBoton;
+    private actividad_5_eltonsaravia.COMPONENTE1 cOMPONENTE11;
+    private actividad_5_eltonsaravia.COMPONENTE1 cOMPONENTE12;
+    private actividad_5_eltonsaravia.Componente2 componente21;
     // End of variables declaration//GEN-END:variables
 }

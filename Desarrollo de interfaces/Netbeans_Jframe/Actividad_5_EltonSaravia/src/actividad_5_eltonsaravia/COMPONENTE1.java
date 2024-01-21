@@ -20,17 +20,14 @@ public class COMPONENTE1 extends JButton implements MouseListener {
     private Color hoverBackgroundColor;
     
     public COMPONENTE1( ) {
-
+         //super(text);
+         init();
     }
 
-    public COMPONENTE1(String text) {
-        super(text);
-        init();
-    }
 
     private void init() {
-        // Configurar la fuente
-       // setFont(new Font("Vivaldi", Font.BOLD, 14));
+        //si la duente no esta en el equipo eligira la que el ordenador tome por defecto 
+        setFont(new Font("Vivaldi", Font.BOLD, 14));
 
         // Configurar colores
         originalBackgroundColor = new Color(100, 30, 22);
