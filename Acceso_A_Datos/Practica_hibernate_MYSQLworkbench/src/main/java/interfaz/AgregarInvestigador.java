@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class AgregarInvestigador extends JDialog {
 	
@@ -112,6 +113,9 @@ public class AgregarInvestigador extends JDialog {
 		textFieldDescripcion.setColumns(10);
 		
 		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Informatica", "Medioambiente", "Social", "Microbiología", "Finanzas", "Estadistica", "Fisica"}));
+		comboBoxCategoria.setToolTipText("hola\r\nnose");
 		comboBoxCategoria.setBounds(218, 343, 314, 21);
 		contentPanel.add(comboBoxCategoria);
 		
@@ -133,33 +137,32 @@ public class AgregarInvestigador extends JDialog {
 				btnGuardar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-				        // Begin Hibernate session
-				        Session session = HibernateUtil.getSessionFactory().openSession();
-				        Transaction transaction = null;
-				        try {
-				            transaction = session.beginTransaction();
-				            
-				            // Create an instance of Investigador and set its properties using the text fields
-				            Investigador investigador = new Investigador();
-				            investigador.setInvExtension(null);
-				            investigador.setInvNombre(textFieldNombre.getText());
-				            investigador.setInvEmail(textFieldEmail.getText());
-				            investigador.setInvSni(Integer.parseInt(textFieldSNI.getText()));
-				            investigador.setInvProdep(Integer.parseInt(textFieldSNI.getText()));
-				            investigador.setInvCategoria(comboBoxCategoria.getSelectedIndex());
-				            investigador.setInvDescripcion(textFieldDescripcion.getText());
-				            
-				            // Save the investigador instance to the database
-				            session.save(investigador);
-				            
-				            // Commit the transaction
-				            transaction.commit();
-				        } catch (RuntimeException ex) {
-				            if (transaction != null) transaction.rollback();
-				            ex.printStackTrace();
-				        } finally {
-				            session.close();
-				        }
+						 Session session = HibernateUtil.getSessionFactory().openSession();
+					        Transaction transaction = null;
+					        try {
+					            transaction = session.beginTransaction();
+					            
+					            Investigador investigador = new Investigador();
+					            // Aquí se debe realizar la conversión adecuada de String a Integer
+					            // Si el campo puede estar vacío, se debe manejar de manera apropiada
+					            investigador.setInvExtension(!textFieldExtencion.getText().isEmpty() ? Integer.parseInt(textFieldExtencion.getText()) : null);
+					            investigador.setInvNombre(textFieldNombre.getText());
+					            investigador.setInvEmail(textFieldEmail.getText());
+					            investigador.setInvSni(!textFieldSNI.getText().isEmpty() ? Integer.parseInt(textFieldSNI.getText()) : null);
+					            investigador.setInvProdep(!textFieldProdep.getText().isEmpty() ? Integer.parseInt(textFieldProdep.getText()) : null);
+					            // Se asume que el índice seleccionado es adecuado para la categoría
+					            investigador.setInvCategoria(comboBoxCategoria.getSelectedIndex());
+					            investigador.setInvDescripcion(textFieldDescripcion.getText());
+					            // Falta el manejo del campo 'textCubiculo' y su conversión a entero si es necesario
+					            
+					            session.save(investigador);
+					            transaction.commit();
+					        } catch (RuntimeException ex) {
+					            if (transaction != null) transaction.rollback();
+					            ex.printStackTrace();
+					        } finally {
+					            session.close();
+					        }
 						
 					}
 				});
