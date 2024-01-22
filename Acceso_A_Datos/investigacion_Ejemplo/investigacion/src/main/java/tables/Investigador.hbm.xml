@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 ene 2024, 6:41:16 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="sga" name="Investigador" optimistic-lock="none" table="investigador">
+        <id name="invId" type="java.lang.Integer">
+            <column name="INV_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="invNombre" type="string">
+            <column length="45" name="INV_NOMBRE"/>
+        </property>
+        <property name="invExtension" type="java.lang.Integer">
+            <column name="INV_EXTENSION"/>
+        </property>
+        <property name="invEmail" type="string">
+            <column length="45" name="INV_EMAIL"/>
+        </property>
+        <property name="invSni" type="string">
+            <column length="45" name="INV_SNI"/>
+        </property>
+        <property name="invProdep" type="string">
+            <column length="45" name="INV_PRODEP"/>
+        </property>
+        <property name="invCategoria" type="string">
+            <column length="45" name="INV_CATEGORIA"/>
+        </property>
+        <property name="invCubiculo" type="string">
+            <column length="45" name="INV_CUBICULO"/>
+        </property>
+        <property name="invDescripcion" type="string">
+            <column length="45" name="INV_DESCRIPCION"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="proyectoses" table="proyectos">
+            <key>
+                <column name="INV_ID"/>
+            </key>
+            <one-to-many class="Proyectos"/>
+        </set>
+    </class>
+</hibernate-mapping>

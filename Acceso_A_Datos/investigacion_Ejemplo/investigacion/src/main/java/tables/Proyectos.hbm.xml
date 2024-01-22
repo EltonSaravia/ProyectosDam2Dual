@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 ene 2024, 6:41:16 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="sga" name="Proyectos" optimistic-lock="none" table="proyectos">
+        <id name="proyectoId" type="java.lang.Integer">
+            <column name="PROYECTO_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Investigador" fetch="select" name="investigador">
+            <column name="INV_ID"/>
+        </many-to-one>
+        <property name="proyectoNombre" type="string">
+            <column length="45" name="PROYECTO_NOMBRE"/>
+        </property>
+        <property name="proyectoYearPub" type="java.lang.Integer">
+            <column name="PROYECTO_YEAR_PUB"/>
+        </property>
+        <property name="proyectoMonto" type="string">
+            <column length="45" name="PROYECTO_MONTO"/>
+        </property>
+    </class>
+</hibernate-mapping>
