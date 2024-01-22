@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import entidades.HibernateUtil;
+import util.HibernateUtil;
 import entidades.Investigador;
 
 import java.awt.event.ActionListener;
