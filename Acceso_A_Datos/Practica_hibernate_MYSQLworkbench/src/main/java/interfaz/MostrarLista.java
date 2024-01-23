@@ -1,56 +1,62 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import entidades.Investigador;
+import util.HibernateUtil;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
+public class MostrarLista extends JFrame {
 
-public class MostrarLista extends JDialog {
+    private JTable table;
 
-	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
-	private JTable table;
+    public MostrarLista() {
+        setTitle("Lista de Investigadores");
+        setBounds(100, 100, 450, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout(0, 0));
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			MostrarLista dialog = new MostrarLista();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        String[] columnNames = {"ID", "Nombre", "Email", "Categoría"};
+        Object[][] data = obtenerDatosInvestigadores();
 
-	/**
-	 * Create the dialog.
-	 */
-	public MostrarLista() {
-		setBounds(100, 100, 764, 572);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(29, 35, 677, 422);
-		contentPanel.add(table);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-		}
-	}
+        table = new JTable(data, columnNames);
+        JScrollPane scrollPane = new JScrollPane(table);
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+    }
+
+    private Object[][] obtenerDatosInvestigadores() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("FROM Investigador");
+        List<Investigador> lista = query.list();
+
+        Object[][] data = new Object[lista.size()][4];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Investigador investigador = lista.get(i);
+            data[i][0] = investigador.getInvId();
+            data[i][1] = investigador.getInvNombre();
+            data[i][2] = investigador.getInvEmail();
+            data[i][3] = investigador.getInvCategoria(); 
+        }
+
+        session.getTransaction().commit();
+        session.close();
+
+        return data;
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                MostrarLista frame = new MostrarLista();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

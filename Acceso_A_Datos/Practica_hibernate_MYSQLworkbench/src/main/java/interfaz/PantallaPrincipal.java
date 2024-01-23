@@ -66,6 +66,12 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(btnBuscar);
 		
 		JButton btnMostrarLista = new JButton("Mostrar Lista");
+		btnMostrarLista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MostrarLista ai = new MostrarLista();
+				ai.setVisible(true);
+			}
+		});
 		btnMostrarLista.setBounds(131, 85, 165, 21);
 		contentPane.add(btnMostrarLista);
 	}
