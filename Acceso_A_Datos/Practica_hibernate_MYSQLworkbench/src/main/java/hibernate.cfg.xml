@@ -14,5 +14,9 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         
         <mapping class="entidades.Investigador" package="entidades" resource="entidades.Investigador.hbm.xml" />
+        <mapping class="entidades.Educacion" package="entidades" resource="entidades.Educacion.hbm.xml" />
+        <mapping class="entidades.ExperienciaLaboral" package="entidades" resource="entidades.ExperienciaLaboral.hbm.xml" />
+        <mapping class="entidades.TesisRedactadas" package="entidades" resource="entidades.TesisRedactadasr.hbm.xml" />
+        <mapping class="entidades.TrabajosGradoDirigidos" package="entidades" resource="entidades.TrabajosGradoDirigidos.hbm.xml" />
     </session-factory>
 </hibernate-configuration>	
