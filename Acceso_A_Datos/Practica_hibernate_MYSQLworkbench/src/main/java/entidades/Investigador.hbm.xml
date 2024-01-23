@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 15 ene 2024 17:10:57 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class catalog="investigacion" name="Investigador" optimistic-lock="none" table="investigador">
+    <class name="entidades.Investigador" table="investigador" catalog="investigacion" optimistic-lock="none">
         <id name="invId" type="int">
             <column name="INV_ID"/>
-            <generator class="assigned"/>
+            <generator class="increment"/> <!-- Si quieres que sea autoincremental -->
         </id>
         <property name="invNombre" type="string">
-            <column length="255" name="INV_NOMBRE"/>
+            <column name="INV_NOMBRE" length="255"/>
         </property>
         <property name="invExtension" type="java.lang.Integer">
             <column name="INV_EXTENSION"/>
         </property>
         <property name="invEmail" type="string">
-            <column length="255" name="INV_EMAIL"/>
+            <column name="INV_EMAIL" length="255"/>
         </property>
         <property name="invSni" type="java.lang.Integer">
             <column name="INV_SNI"/>
@@ -28,7 +28,7 @@
             <column name="INV_CUBICULO"/>
         </property>
         <property name="invDescripcion" type="string">
-            <column length="65535" name="INV_DESCRIPCION"/>
+            <column name="INV_DESCRIPCION" length="65535"/>
         </property>
         <set fetch="select" inverse="true" lazy="true" name="trabajosGradoDirigidoses" table="trabajos_grado_dirigidos">
             <key>

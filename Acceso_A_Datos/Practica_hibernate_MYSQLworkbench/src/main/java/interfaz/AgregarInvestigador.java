@@ -17,6 +17,8 @@ import entidades.Investigador;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -33,8 +35,6 @@ public class AgregarInvestigador extends JDialog {
 	private JTextField textFieldProdep;
 	private JTextField textFieldDescripcion;
 	private JTextField textCubiculo;
-
-
 
 	/**
 	 * Create the dialog.
@@ -114,7 +114,7 @@ public class AgregarInvestigador extends JDialog {
 		
 		JComboBox comboBoxCategoria = new JComboBox();
 		comboBoxCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Informatica", "Medioambiente", "Social", "Microbiología", "Finanzas", "Estadistica", "Fisica"}));
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
 		comboBoxCategoria.setToolTipText("hola\r\nnose");
 		comboBoxCategoria.setBounds(218, 343, 314, 21);
 		contentPanel.add(comboBoxCategoria);
@@ -134,38 +134,62 @@ public class AgregarInvestigador extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnGuardar = new JButton("Guardar");
-				btnGuardar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+		        btnGuardar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                Session session = HibernateUtil.getSessionFactory().openSession();
+		                Transaction transaction = null;
+		                try {
+		                    transaction = session.beginTransaction();
 
-						 Session session = HibernateUtil.getSessionFactory().openSession();
-					        Transaction transaction = null;
-					        try {
-					            transaction = session.beginTransaction();
-					            
-					            Investigador investigador = new Investigador();
-					            // Aquí se debe realizar la conversión adecuada de String a Integer
-					            // Si el campo puede estar vacío, se debe manejar de manera apropiada
-					            investigador.setInvExtension(!textFieldExtencion.getText().isEmpty() ? Integer.parseInt(textFieldExtencion.getText()) : null);
-					            investigador.setInvNombre(textFieldNombre.getText());
-					            investigador.setInvEmail(textFieldEmail.getText());
-					            investigador.setInvSni(!textFieldSNI.getText().isEmpty() ? Integer.parseInt(textFieldSNI.getText()) : null);
-					            investigador.setInvProdep(!textFieldProdep.getText().isEmpty() ? Integer.parseInt(textFieldProdep.getText()) : null);
-					            // Se asume que el índice seleccionado es adecuado para la categoría
-					            investigador.setInvCategoria(comboBoxCategoria.getSelectedIndex());
-					            investigador.setInvDescripcion(textFieldDescripcion.getText());
-					            // Falta el manejo del campo 'textCubiculo' y su conversión a entero si es necesario
-					            
-					            session.save(investigador);
-					            transaction.commit();
-					        } catch (RuntimeException ex) {
-					            if (transaction != null) transaction.rollback();
-					            ex.printStackTrace();
-					        } finally {
-					            session.close();
-					        }
-						
-					}
-				});
+		                    Investigador investigador = new Investigador();
+		                    try {
+		                        int extension = Integer.parseInt(textFieldExtencion.getText());
+		                        investigador.setInvExtension(extension);
+		                    } catch (NumberFormatException ex) {
+		                        JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido para la Extensión.");
+		                        return;
+		                    }
+
+		                    investigador.setInvNombre(textFieldNombre.getText());
+		                    investigador.setInvEmail(textFieldEmail.getText());
+
+		                    try {
+		                        int sni = Integer.parseInt(textFieldSNI.getText());
+		                        investigador.setInvSni(sni);
+		                    } catch (NumberFormatException ex) {
+		                        JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido para el SNI.");
+		                        return;
+		                    }
+
+		                    try {
+		                        int prodep = Integer.parseInt(textFieldProdep.getText());
+		                        investigador.setInvProdep(prodep);
+		                    } catch (NumberFormatException ex) {
+		                        JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido para el Prodep.");
+		                        return;
+		                    }
+
+		                    investigador.setInvCategoria(comboBoxCategoria.getSelectedIndex());
+		                    investigador.setInvDescripcion(textFieldDescripcion.getText());
+
+		                    try {
+		                        int cubiculo = Integer.parseInt(textCubiculo.getText());
+		                        investigador.setInvCubiculo(cubiculo);
+		                    } catch (NumberFormatException ex) {
+		                        JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido para el Cubículo.");
+		                        return;
+		                    }
+
+		                    session.save(investigador);
+		                    transaction.commit();
+		                } catch (RuntimeException ex) {
+		                    if (transaction != null) transaction.rollback();
+		                    ex.printStackTrace();
+		                } finally {
+		                    session.close();
+		                }
+		            }
+		        });
 				btnGuardar.setActionCommand("OK");
 				buttonPane.add(btnGuardar);
 				getRootPane().setDefaultButton(btnGuardar);

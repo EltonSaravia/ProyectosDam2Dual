@@ -53,14 +53,14 @@ public class Componente2 extends JLabel {
         }
 
         try {
-            // Intenta abrir la URL en el navegador predeterminado del sistema
+            
             if (navegador.equalsIgnoreCase("default")) {
                 Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
                 if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
                     desktop.browse(new URI(paginaWeb));
                 }
             } else {
-                // Abre la URL en el navegador especificado
+                
                 new ProcessBuilder(navegador, paginaWeb).start();
             }
         } catch (IOException | URISyntaxException ex) {
