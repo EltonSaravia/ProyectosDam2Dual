@@ -27,18 +27,28 @@ public class MainActivity extends AppCompatActivity {
     //Gestionar las opciones del menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (item.getItemId() == R.id.menu_fragmento1) {
             //lanzar el fragmento1
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.contenedorFragmentos, new Fragmento1()).commit();
         } else if (item.getItemId() == R.id.menu_fragmento2) {
             //lanzar el fragmento2
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.contenedorFragmentos, new Fragmento2()).commit();
+
         }
 
-
+        ft.addToBackStack(null);
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack(); // Regresa al fragmento anterior
+        } else {
+            super.onBackPressed(); // Si no hay más en la pila, sale de la aplicación
+        }
     }
 }
