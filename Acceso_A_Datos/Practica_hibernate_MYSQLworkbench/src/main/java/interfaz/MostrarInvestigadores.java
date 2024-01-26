@@ -1,79 +1,62 @@
 package interfaz;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import entidades.Investigador;
+import util.HibernateUtil;
 
 public class MostrarInvestigadores extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MostrarInvestigadores frame = new MostrarInvestigadores();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public MostrarInvestigadores() {
+        setTitle("Lista de Investigadores");
+        setBounds(100, 100, 450, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout(0, 0));
 
-	/**
-	 * Create the frame.
-	 */
-	public MostrarInvestigadores() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        String[] columnNames = {"ID", "Nombre", "Email", "Categoría"};
+        Object[][] data = obtenerDatosInvestigadores();
 
-		setContentPane(contentPane);
-		
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(131, 22, 165, 21);
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AgregarInvestigador ai = new AgregarInvestigador();
-				ai.setVisible(true);
-			}
-		});
-		contentPane.setLayout(null);
-		contentPane.add(btnAgregar);
-		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(131, 168, 165, 21);
-		contentPane.add(btnEliminar);
-		
-		JButton btnGenerarDatos = new JButton("Generar Datos");
-		btnGenerarDatos.setBounds(131, 54, 165, 21);
-		contentPane.add(btnGenerarDatos);
-		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(131, 137, 165, 21);
-		contentPane.add(btnBuscar);
-		
-		JButton btnMostrarLista = new JButton("Mostrar Lista");
-		btnMostrarLista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MostrarLista ai = new MostrarLista();
-				ai.setVisible(true);
-			}
-		});
-		btnMostrarLista.setBounds(131, 85, 165, 21);
-		contentPane.add(btnMostrarLista);
-	}
+        table = new JTable(data, columnNames);
+        JScrollPane scrollPane = new JScrollPane(table);
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+    }
 
+    private Object[][] obtenerDatosInvestigadores() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("FROM Investigador");
+        List<Investigador> lista = query.list();
+
+        Object[][] data = new Object[lista.size()][4];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Investigador investigador = lista.get(i);
+            data[i][0] = investigador.getInvId();
+            data[i][1] = investigador.getInvNombre();
+            data[i][2] = investigador.getInvEmail();
+            data[i][3] = investigador.getInvCategoria(); 
+        }
+
+        session.getTransaction().commit();
+        session.close();
+
+        return data;
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                MostrarInvestigadores frame = new MostrarInvestigadores();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }
