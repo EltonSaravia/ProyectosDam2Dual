@@ -54,6 +54,12 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(btnAgregar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EliminarInvestigador ei = new EliminarInvestigador();
+				ei.setVisible(true);
+			}
+		});
 		btnEliminar.setBounds(131, 168, 165, 21);
 		contentPane.add(btnEliminar);
 		

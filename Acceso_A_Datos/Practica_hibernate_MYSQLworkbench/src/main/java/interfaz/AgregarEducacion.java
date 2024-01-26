@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgregarEducacion extends JDialog {
 
@@ -54,10 +57,10 @@ public class AgregarEducacion extends JDialog {
 			contentPanel.add(lblNewLabelTermino);
 		}
 		{
-			JLabel lblNewLabelEstudiante = new JLabel("Estudiante");
-			lblNewLabelEstudiante.setFont(new Font("Tahoma", Font.BOLD, 14));
-			lblNewLabelEstudiante.setBounds(38, 141, 174, 13);
-			contentPanel.add(lblNewLabelEstudiante);
+			JLabel lblNewLabelInvestigador = new JLabel("Investigador");
+			lblNewLabelInvestigador.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblNewLabelInvestigador.setBounds(38, 141, 174, 13);
+			contentPanel.add(lblNewLabelInvestigador);
 		}
 		{
 			JComboBox comboBoxEstudianteEstudios = new JComboBox();
@@ -88,10 +91,14 @@ public class AgregarEducacion extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
 }
