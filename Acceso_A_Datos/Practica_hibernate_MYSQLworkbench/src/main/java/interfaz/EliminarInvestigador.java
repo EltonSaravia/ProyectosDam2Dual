@@ -115,7 +115,7 @@ public class EliminarInvestigador extends JDialog {
 	private Investigador buscarInvestigadorPorNombre(String nombre) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			String hql = "FROM Investigador WHERE nombre = :nombreInvestigador";
+			String hql = "FROM Investigador WHERE invNombre = :nombreInvestigador";
 			Query<Investigador> query = session.createQuery(hql, Investigador.class);
 			query.setParameter("nombreInvestigador", nombre);
 			return query.uniqueResult();

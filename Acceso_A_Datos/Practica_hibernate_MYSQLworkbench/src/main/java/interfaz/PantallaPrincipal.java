@@ -64,6 +64,11 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(btnEliminar);
 		
 		JButton btnGenerarDatos = new JButton("Generar Datos");
+		btnGenerarDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnGenerarDatos.setBounds(131, 54, 165, 21);
 		contentPane.add(btnGenerarDatos);
 		
