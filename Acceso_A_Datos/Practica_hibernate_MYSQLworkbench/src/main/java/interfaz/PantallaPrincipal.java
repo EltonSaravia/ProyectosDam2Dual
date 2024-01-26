@@ -71,8 +71,8 @@ public class PantallaPrincipal extends JFrame {
 		btnAgregar.setBounds(131, 22, 165, 21);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AgregarInvestigador ai = new AgregarInvestigador();
-				ai.setVisible(true);
+				BotonesAgregar ba = new BotonesAgregar();
+				ba.setVisible(true);
 			}
 		});
 		contentPane.setLayout(null);
@@ -99,7 +99,7 @@ public class PantallaPrincipal extends JFrame {
 			        try {
 			            transaction = session.beginTransaction();
 
-			            for (int i = 0; i < 10; i++) {
+			            for (int i = 0; i < 1000; i++) {
 			                Investigador investigador = new Investigador();
 			                investigador.setInvNombre(faker.name().fullName());
 			                investigador.setInvExtension(faker.number().numberBetween(1000, 9999));

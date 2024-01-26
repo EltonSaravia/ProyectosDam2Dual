@@ -59,7 +59,7 @@ public class AgregarEducacion extends JDialog {
 		{
 			JLabel lblNewLabelInvestigador = new JLabel("Investigador");
 			lblNewLabelInvestigador.setFont(new Font("Tahoma", Font.BOLD, 14));
-			lblNewLabelInvestigador.setBounds(38, 141, 174, 13);
+			lblNewLabelInvestigador.setBounds(38, 141, 174, 19);
 			contentPanel.add(lblNewLabelInvestigador);
 		}
 		{
@@ -85,6 +85,10 @@ public class AgregarEducacion extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton ButtonGuardar = new JButton("Guardar");
+				ButtonGuardar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				ButtonGuardar.setActionCommand("OK");
 				buttonPane.add(ButtonGuardar);
 				getRootPane().setDefaultButton(ButtonGuardar);

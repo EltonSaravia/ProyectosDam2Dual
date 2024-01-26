@@ -11,14 +11,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgregarExperiencia extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField textFieldInstitucion;
+	private JTextField textFieldPeriodo;
+	private JTextField textFieldDescripcion;
 
 	/**
 	 * Launch the application.
@@ -67,27 +69,27 @@ public class AgregarExperiencia extends JDialog {
 			contentPanel.add(lblNewLabelEstudianteEXPlaboral);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(194, 26, 209, 19);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			textFieldInstitucion = new JTextField();
+			textFieldInstitucion.setBounds(194, 26, 209, 19);
+			contentPanel.add(textFieldInstitucion);
+			textFieldInstitucion.setColumns(10);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setBounds(194, 80, 209, 19);
-			contentPanel.add(textField_1);
-			textField_1.setColumns(10);
+			textFieldPeriodo = new JTextField();
+			textFieldPeriodo.setBounds(194, 80, 209, 19);
+			contentPanel.add(textFieldPeriodo);
+			textFieldPeriodo.setColumns(10);
 		}
 		{
-			textField_2 = new JTextField();
-			textField_2.setBounds(194, 129, 209, 19);
-			contentPanel.add(textField_2);
-			textField_2.setColumns(10);
+			textFieldDescripcion = new JTextField();
+			textFieldDescripcion.setBounds(194, 129, 209, 19);
+			contentPanel.add(textFieldDescripcion);
+			textFieldDescripcion.setColumns(10);
 		}
 		{
-			JComboBox comboBox = new JComboBox();
-			comboBox.setBounds(132, 177, 271, 21);
-			contentPanel.add(comboBox);
+			JComboBox comboBoxEstudiante = new JComboBox();
+			comboBoxEstudiante.setBounds(132, 177, 271, 21);
+			contentPanel.add(comboBoxEstudiante);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -95,12 +97,21 @@ public class AgregarExperiencia extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton ButtonGuardar = new JButton("Guardar");
+				ButtonGuardar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				ButtonGuardar.setActionCommand("OK");
 				buttonPane.add(ButtonGuardar);
 				getRootPane().setDefaultButton(ButtonGuardar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

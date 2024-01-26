@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgregarTrabajosDirigidos extends JDialog {
 
@@ -108,12 +110,21 @@ public class AgregarTrabajosDirigidos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton ButtonGuardar = new JButton("Guardar");
+				ButtonGuardar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				ButtonGuardar.setActionCommand("OK");
 				buttonPane.add(ButtonGuardar);
 				getRootPane().setDefaultButton(ButtonGuardar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
