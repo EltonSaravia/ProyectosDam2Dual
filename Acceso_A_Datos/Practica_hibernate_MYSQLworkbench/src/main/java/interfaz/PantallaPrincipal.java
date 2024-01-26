@@ -5,10 +5,35 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import util.HibernateUtil;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
+
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import util.HibernateUtil;
+import entidades.Investigador;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import com.github.javafaker.Faker;	
 
 public class PantallaPrincipal extends JFrame {
 
@@ -67,6 +92,35 @@ public class PantallaPrincipal extends JFrame {
 		btnGenerarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			        Session session = HibernateUtil.getSessionFactory().openSession();
+			        Transaction transaction = null;
+			        Faker faker = new Faker();
+
+			        try {
+			            transaction = session.beginTransaction();
+
+			            for (int i = 0; i < 10; i++) {
+			                Investigador investigador = new Investigador();
+			                investigador.setInvNombre(faker.name().fullName());
+			                investigador.setInvExtension(faker.number().numberBetween(1000, 9999));
+			                investigador.setInvEmail(faker.internet().emailAddress());
+			                investigador.setInvSni(faker.number().numberBetween(1, 10)); // Ajustar según tu lógica
+			                investigador.setInvProdep(faker.number().numberBetween(1, 10)); // Ajustar según tu lógica
+			                investigador.setInvCategoria(faker.number().numberBetween(0, 5)); // Asumiendo que la categoría es un índice
+			                investigador.setInvDescripcion(faker.lorem().sentence());
+			                investigador.setInvCubiculo(faker.number().numberBetween(1, 20)); // Ajustar según tu lógica
+
+			                session.save(investigador);
+			            }
+
+			            transaction.commit();
+			        } catch (RuntimeException ex) {
+			            if (transaction != null) transaction.rollback();
+			            ex.printStackTrace();
+			        } finally {
+			            session.close();
+			        }
+			    
 			}
 		});
 		btnGenerarDatos.setBounds(131, 54, 165, 21);
