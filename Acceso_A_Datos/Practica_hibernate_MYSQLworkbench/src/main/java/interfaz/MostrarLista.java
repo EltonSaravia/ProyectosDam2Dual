@@ -40,23 +40,34 @@ public class MostrarLista extends JDialog {
 		
 		JButton cancelButtonListaGrados = new JButton("Ver lista de Grados");
 		cancelButtonListaGrados.setActionCommand("Cancel");
-		cancelButtonListaGrados.setBounds(114, 119, 183, 21);
+		cancelButtonListaGrados.setBounds(114, 131, 183, 21);
 		contentPanel.add(cancelButtonListaGrados);
 		
 		JButton buttonListaTesis = new JButton("Ver Lista de tesis");
 		buttonListaTesis.setActionCommand("Cancel");
-		buttonListaTesis.setBounds(114, 77, 183, 21);
+		buttonListaTesis.setBounds(114, 88, 183, 21);
 		contentPanel.add(buttonListaTesis);
 		
 		JButton buttonListaEducacion = new JButton("Ver lista de Estudios");
 		buttonListaEducacion.setActionCommand("Cancel");
-		buttonListaEducacion.setBounds(114, 29, 183, 21);
+		buttonListaEducacion.setBounds(114, 52, 183, 21);
 		contentPanel.add(buttonListaEducacion);
 		
 		JButton buttonListaLaboral = new JButton("Experiencia Laboral");
 		buttonListaLaboral.setActionCommand("Cancel");
 		buttonListaLaboral.setBounds(114, 165, 183, 21);
 		contentPanel.add(buttonListaLaboral);
+		
+		JButton buttonListaInvestigadores = new JButton("Ver lista de Investigadores");
+		buttonListaInvestigadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MostrarInvestigadores mi = new MostrarInvestigadores();
+				mi.setVisible(true);
+			}
+		});
+		buttonListaInvestigadores.setActionCommand("Cancel");
+		buttonListaInvestigadores.setBounds(114, 21, 183, 21);
+		contentPanel.add(buttonListaInvestigadores);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
