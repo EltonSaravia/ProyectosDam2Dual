@@ -98,17 +98,16 @@ public class PantallaPrincipal extends JFrame {
 
 			        try {
 			            transaction = session.beginTransaction();
-
+			            	//esto es de una libreria de git que crea datos falsos para poder trabajar en pruebas
 			            for (int i = 0; i < 1000; i++) {
 			                Investigador investigador = new Investigador();
 			                investigador.setInvNombre(faker.name().fullName());
 			                investigador.setInvExtension(faker.number().numberBetween(1000, 9999));
 			                investigador.setInvEmail(faker.internet().emailAddress());
-			                investigador.setInvSni(faker.number().numberBetween(1, 10)); // Ajustar según tu lógica
-			                investigador.setInvProdep(faker.number().numberBetween(1, 10)); // Ajustar según tu lógica
-			                investigador.setInvCategoria(faker.number().numberBetween(0, 5)); // Asumiendo que la categoría es un índice
-			                investigador.setInvDescripcion(faker.lorem().sentence());
-			                investigador.setInvCubiculo(faker.number().numberBetween(1, 20)); // Ajustar según tu lógica
+			                investigador.setInvSni(faker.number().numberBetween(1, 10)); // 
+			                investigador.setInvProdep(faker.number().numberBetween(1, 10)); // 
+			                investigador.setInvCategoria(faker.number().numberBetween(0, 5)); // 
+			                investigador.setInvCubiculo(faker.number().numberBetween(1, 20)); // 
 
 			                session.save(investigador);
 			            }
@@ -129,6 +128,8 @@ public class PantallaPrincipal extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Buscador search = new Buscador();
+				search.setVisible(true);
 			}
 		});
 		btnBuscar.setBounds(131, 137, 165, 21);
