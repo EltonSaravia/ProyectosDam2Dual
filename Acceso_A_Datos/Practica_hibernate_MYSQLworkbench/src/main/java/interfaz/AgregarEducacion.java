@@ -2,107 +2,144 @@ package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import entidades.Educacion;
+import entidades.Investigador;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
+import org.hibernate.query.Query;
+
+import util.HibernateUtil; // Asegúrate de importar HibernateUtil
+
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
+
 import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class AgregarEducacion extends JDialog {
 
-	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
-	private JTextField textFieldTerminoEstudios;
-	private JTextField textFieldEducacionEstudios;
+    private static final long serialVersionUID = 1L;
+    private final JPanel contentPanel = new JPanel();
+    private JTextField textFieldGrado;
+    private JTextField textFieldCampo;
+    private JComboBox<Investigador> comboBoxInvestigadoresDesplegable; // Asegúrate de que es del tipo correcto
+    private JTextField textFieldDescripcion;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			AgregarEducacion dialog = new AgregarEducacion();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+  
+    public AgregarEducacion() {
+        setBounds(100, 100, 450, 300);
+        getContentPane().setLayout(new BorderLayout());
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        getContentPane().add(contentPanel, BorderLayout.CENTER);
+        contentPanel.setLayout(null);
 
-	/**
-	 * Create the dialog.
-	 */
-	public AgregarEducacion() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		{
-			JLabel lblNewLabelEducacion = new JLabel("Educacion");
-			lblNewLabelEducacion.setFont(new Font("Tahoma", Font.BOLD, 14));
-			lblNewLabelEducacion.setBounds(38, 38, 174, 13);
-			contentPanel.add(lblNewLabelEducacion);
-		}
-		{
-			JLabel lblNewLabelTermino = new JLabel("Termino");
-			lblNewLabelTermino.setFont(new Font("Tahoma", Font.BOLD, 14));
-			lblNewLabelTermino.setBounds(38, 89, 174, 13);
-			contentPanel.add(lblNewLabelTermino);
-		}
-		{
-			JLabel lblNewLabelInvestigador = new JLabel("Investigador");
-			lblNewLabelInvestigador.setFont(new Font("Tahoma", Font.BOLD, 14));
-			lblNewLabelInvestigador.setBounds(38, 141, 174, 19);
-			contentPanel.add(lblNewLabelInvestigador);
-		}
-		{
-			JComboBox comboBoxEstudianteEstudios = new JComboBox();
-			comboBoxEstudianteEstudios.setBounds(209, 139, 206, 21);
-			contentPanel.add(comboBoxEstudianteEstudios);
-		}
-		{
-			textFieldTerminoEstudios = new JTextField();
-			textFieldTerminoEstudios.setBounds(209, 88, 206, 19);
-			contentPanel.add(textFieldTerminoEstudios);
-			textFieldTerminoEstudios.setColumns(10);
-		}
-		{
-			textFieldEducacionEstudios = new JTextField();
-			textFieldEducacionEstudios.setBounds(209, 37, 206, 19);
-			contentPanel.add(textFieldEducacionEstudios);
-			textFieldEducacionEstudios.setColumns(10);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton ButtonGuardar = new JButton("Guardar");
-				ButtonGuardar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				ButtonGuardar.setActionCommand("OK");
-				buttonPane.add(ButtonGuardar);
-				getRootPane().setDefaultButton(ButtonGuardar);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
-	}
+        JLabel lblNewLabelGrado = new JLabel("Grado");
+        lblNewLabelGrado.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabelGrado.setBounds(38, 38, 174, 13);
+        contentPanel.add(lblNewLabelGrado);
+
+        JLabel lblNewLabelCampo = new JLabel("Campo");
+        lblNewLabelCampo.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabelCampo.setBounds(38, 78, 174, 13);
+        contentPanel.add(lblNewLabelCampo);
+
+        JLabel lblNewLabelDescripcion = new JLabel("Descripcion");
+        lblNewLabelDescripcion.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabelDescripcion.setBounds(38, 118, 174, 13);
+        contentPanel.add(lblNewLabelDescripcion);
+
+        JLabel lblNewLabelInvestigador = new JLabel("Investigador");
+        lblNewLabelInvestigador.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblNewLabelInvestigador.setBounds(38, 158, 174, 19);
+        contentPanel.add(lblNewLabelInvestigador);
+
+        textFieldGrado = new JTextField();
+        textFieldGrado.setBounds(182, 37, 233, 19);
+        contentPanel.add(textFieldGrado);
+        textFieldGrado.setColumns(10);
+
+        textFieldCampo = new JTextField();
+        textFieldCampo.setBounds(182, 77, 233, 19);
+        contentPanel.add(textFieldCampo);
+        textFieldCampo.setColumns(10);
+
+        textFieldDescripcion = new JTextField();
+        textFieldDescripcion.setBounds(182, 117, 233, 19);
+        contentPanel.add(textFieldDescripcion);
+        textFieldDescripcion.setColumns(10);
+
+        comboBoxInvestigadoresDesplegable = new JComboBox<>(); // Asegúrate de que se carguen los datos MAN
+        comboBoxInvestigadoresDesplegable.setBounds(182, 157, 233, 21);
+        contentPanel.add(comboBoxInvestigadoresDesplegable);
+        loadResearchersIntoComboBox(); // Cargar investigadores en el comboBox
+
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        getContentPane().add(buttonPane, BorderLayout.SOUTH);
+        {
+            JButton ButtonGuardar = new JButton("Guardar");
+            ButtonGuardar.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    guardarEducacion();
+                }
+            });
+            ButtonGuardar.setActionCommand("OK");
+            buttonPane.add(ButtonGuardar);
+            getRootPane().setDefaultButton(ButtonGuardar);
+        }
+        {
+            JButton cancelButton = new JButton("Cancel");
+            cancelButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
+            cancelButton.setActionCommand("Cancel");
+            buttonPane.add(cancelButton);
+        }
+    }
+
+    private void loadResearchersIntoComboBox() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query<Investigador> query = session.createQuery("FROM Investigador", Investigador.class);
+        List<Investigador> lista = query.list();
+
+        for (Investigador investigador : lista) {
+            comboBoxInvestigadoresDesplegable.addItem(investigador);
+        }
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    private void guardarEducacion() {
+        String grado = textFieldGrado.getText();
+        String campo = textFieldCampo.getText();
+        String descripcion = textFieldDescripcion.getText();
+        Investigador investigadorSeleccionado = (Investigador) comboBoxInvestigadoresDesplegable.getSelectedItem();
+
+        Educacion nuevaEducacion = new Educacion();
+        nuevaEducacion.setEdGrado(grado);
+        nuevaEducacion.setEdCampo(campo);
+        nuevaEducacion.setEdDescripcion(descripcion);
+        nuevaEducacion.setInvestigador(investigadorSeleccionado);
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(nuevaEducacion);
+            tx.commit();
+        } catch (Exception ex) {
+            if (tx != null) tx.rollback();
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }

@@ -127,6 +127,10 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(btnGenerarDatos);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBuscar.setBounds(131, 137, 165, 21);
 		contentPane.add(btnBuscar);
 		
