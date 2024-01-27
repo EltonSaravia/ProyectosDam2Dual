@@ -4,7 +4,7 @@ package entidades;
 import java.util.HashSet;
 import java.util.Set;
 
-
+import jakarta.persistence.CascadeType;
 //jakarta ---------------Necesario para saber cual es el nombre de una clase en la BD
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,18 +42,23 @@ public class Investigador implements java.io.Serializable {
 	private Integer invCubiculo;
 	@Column(name="INV_DESCRIPCION")
 	private String invDescripcion;
-	
-	 @OneToMany(mappedBy = "investigador")
-	    private Set<TrabajosGradoDirigidos> trabajosGradoDirigidoses = new HashSet<>(0);
+	/////////////////////////////////////
+	/*
+	 * Aqui aplico la del sabido, jajaja como se que dara problemas al borrar aplico un delete en cascada para 
+	 * eliminar todas las entradas donde se use una foreing key de esta clase.
+	 */
+	///////////////////////////////////////////No lo he podido probar pero si te da error borra lo de la cascada para que puedas eliminar
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
+	private Set<TrabajosGradoDirigidos> trabajosGradoDirigidoses = new HashSet<>(0);
 
-	    @OneToMany(mappedBy = "investigador")
-	    private Set<ExperienciaLaboral> experienciaLaborals = new HashSet<>(0);
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
+	private Set<ExperienciaLaboral> experienciaLaborals = new HashSet<>(0);
 
-	    @OneToMany(mappedBy = "investigador")
-	    private Set<Educacion> educacions = new HashSet<>(0);
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
+	private Set<Educacion> educacions = new HashSet<>(0);
 
-	    @OneToMany(mappedBy = "investigador")
-	    private Set<TesisRedactadas> tesisRedactadases = new HashSet<>(0);
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
+	private Set<TesisRedactadas> tesisRedactadases = new HashSet<>(0);
 
 	public Investigador() {
 	}
