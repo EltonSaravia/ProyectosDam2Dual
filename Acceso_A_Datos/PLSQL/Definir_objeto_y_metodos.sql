@@ -48,7 +48,7 @@ CREATE OR REPLACE TYPE VENTA AS OBJECT (
 /
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*
+*/
 2.- Crear dos tablas
 
 Crear las tablas asociadas a los tipos de objeto creados
@@ -152,10 +152,10 @@ END;
 
 
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
+*/
 4.- Código
  Código que verifique que los métodos funcionan correctamente
-
+*/
 
 DECLARE
     -- CREANDO INSTANCIAS DE LOS OBJETOS
