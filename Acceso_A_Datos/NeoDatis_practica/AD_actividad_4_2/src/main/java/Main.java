@@ -20,7 +20,7 @@ public class Main {
 	        	Centro centro1 = new Centro();
 	            centro1.setNom_centro("Centro A");
 	            centro1.setCod_centro(1);
-	            // Puedes configurar más propiedades del centro si lo deseas
+	            
 	            listaDeCentros.add(centro1);
 
 	            Centro centro2 = new Centro();
@@ -31,12 +31,16 @@ public class Main {
 
 	            // Crear y asignar directores a los centros
 	            Profesor director1 = new Profesor();
-	            director1.setNombre_ape("Juan Pérez");
+	            director1.setNombre_ape("Juan");
 	            centro1.setDirector(director1);
 
 	            Profesor director2 = new Profesor();
-	            director2.setNombre_ape("Ana López");
+	            director2.setNombre_ape("Ana");
 	            centro2.setDirector(director2);
+	            
+	            /*Profesor director3 = new Profesor();
+	            director1.setNombre_ape("Juan");
+	            centro1.setDirector(director3);*/
 
 	            // Crear asignaturas
 	            Asignatura asignatura1 = new Asignatura();
@@ -82,7 +86,7 @@ public class Main {
     public static void crearCentro(Centro centro) {
         ODB odb = null;
         try {
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis"); 
+            odb = ODBFactory.open("E:\\Documentos\\GitHub\\ProyectosDam2Dual\\Acceso_A_Datos\\NeoDatis_practica\\AD_actividad_4_2\\Profesorado.neodatis"); 
             odb.store(centro);
         } finally {
             if (odb != null) {
@@ -112,7 +116,7 @@ public class Main {
     public static void crearAsignatura(Asignatura asignatura) {
         ODB odb = null;
         try {
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis");
+            odb = ODBFactory.open("E:\\\\Documentos\\\\GitHub\\\\ProyectosDam2Dual\\\\Acceso_A_Datos\\\\NeoDatis_practica\\\\AD_actividad_4_2\\\\Profesorado.neodatis");
             odb.store(asignatura);
         } finally {
             if (odb != null) {
@@ -124,7 +128,7 @@ public class Main {
     public static void eliminarAsignatura(String cod_asig) {
         ODB odb = null;
         try {
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis");
+            odb = ODBFactory.open("E:\\\\Documentos\\\\GitHub\\\\ProyectosDam2Dual\\\\Acceso_A_Datos\\\\NeoDatis_practica\\\\AD_actividad_4_2\\\\Profesorado.neodatis");
             Objects<Asignatura> asignaturas = odb.getObjects(Asignatura.class);
             for (Asignatura a : asignaturas) {
                 if (a.getCod_asig().equals(cod_asig)) {
@@ -142,7 +146,7 @@ public class Main {
     public static void crearProfesor(Profesor profesor) {
         ODB odb = null;
         try {
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis");
+            odb = ODBFactory.open("E:\\\\Documentos\\\\GitHub\\\\ProyectosDam2Dual\\\\Acceso_A_Datos\\\\NeoDatis_practica\\\\AD_actividad_4_2\\\\Profesorado.neodatis");
             odb.store(profesor);
         } finally {
             if (odb != null) {
@@ -154,7 +158,7 @@ public class Main {
     public static void eliminarProfesor(int cod_prof) {
         ODB odb = null;
         try {
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis");
+            odb = ODBFactory.open("E:\\\\Documentos\\\\GitHub\\\\ProyectosDam2Dual\\\\Acceso_A_Datos\\\\NeoDatis_practica\\\\AD_actividad_4_2\\\\Profesorado.neodatis");
             Objects<Profesor> profesores = odb.getObjects(Profesor.class);
             for (Profesor p : profesores) {
                 if (p.getCod_prof() == cod_prof) {
@@ -174,7 +178,7 @@ public class Main {
         ODB odb = null;
         try {
             // Abrir la conexión con la base de datos
-            odb = ODBFactory.open("tuBaseDeDatos.neodatis");
+            odb = ODBFactory.open("E:\\\\Documentos\\\\GitHub\\\\ProyectosDam2Dual\\\\Acceso_A_Datos\\\\NeoDatis_practica\\\\AD_actividad_4_2\\\\Profesorado.neodatis");
 
             // Obtener el profesor y los centros involucrados
             Objects<Profesor> profesores = odb.getObjects(Profesor.class);
