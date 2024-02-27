@@ -6,13 +6,13 @@ import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
 
 public class Centro {
-    private int cod_centro;
+    private String cod_centro;
     private String nom_centro;
-    private Profesor director; // Asociación a un objeto Profesor como director
+    private String director; // Asociación a un objeto Profesor como director
     private String direccion;
     private String localidad;
     private String provincia;
-    private Set<Profesor> profesores; // Conjunto de profesores asociados con este centro
+    private Set<String> profesores; // Conjunto de profesores asociados con este centro
 
     public Centro() {
         profesores = new HashSet<>();
@@ -20,15 +20,15 @@ public class Centro {
 
     // getters y setters
     // ...
-    public void addProfesor(Profesor profesor) {
+    public void addProfesor(String profesor) {
         profesores.add(profesor);
     }
 
-    public int getCod_centro() {
+    public String getCod_centro() {
 		return cod_centro;
 	}
 
-	public void setCod_centro(int cod_centro) {
+	public void setCod_centro(String cod_centro) {
 		this.cod_centro = cod_centro;
 	}
 
@@ -40,11 +40,11 @@ public class Centro {
 		this.nom_centro = nom_centro;
 	}
 
-	public Profesor getDirector() {
+	public String getDirector() {
 		return director;
 	}
 
-	public void setDirector(Profesor director) {
+	public void setDirector(String director) {
 		this.director = director;
 	}
 
@@ -72,11 +72,11 @@ public class Centro {
 		this.provincia = provincia;
 	}
 
-	public Set<Profesor> getProfesores() {
+	public Set<String> getProfesores() {
 		return profesores;
 	}
 
-	public void setProfesores(Set<Profesor> profesores) {
+	public void setProfesores(Set<String> profesores) {
 		this.profesores = profesores;
 	}
 

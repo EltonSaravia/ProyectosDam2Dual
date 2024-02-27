@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Set;
 
 public class Profesor {
-    private int cod_prof;
+    private String cod_prof;
     private String nombre_ape;
     private String especialidad;
     private Date fecha_nac;
     private char sexo;
     private Set<Asignatura> asignaturas; // Conjunto de asignaturas que enseña este profesor
-    private Set<Centro> centros;
+	private HashSet<String> centros;
+    
     
     public Profesor() {
         asignaturas = new HashSet<>();
@@ -22,7 +23,7 @@ public class Profesor {
    
 
     // Este método copia el profesor a un nuevo centro
-    public void copiarA(Centro nuevoCentro) {
+    public void copiarA(String nuevoCentro) {
         this.addCentro(nuevoCentro);
     }
 
@@ -31,32 +32,36 @@ public class Profesor {
         asignaturas.add(asignatura);
     }
     
-    public void addCentro(Centro centro) {
-        if (!centros.contains(centro)) {
-            centros.add(centro);
+    public void addCentro(String centroDestino) {
+        if (!centros.contains(centroDestino)) {
+            centros.add(centroDestino);
         }
     }
 
-    public void removeCentro(Centro centro) {
+    public void removeCentro(String centro) {
         centros.remove(centro);
     }
 
     
-    public Set<Centro> getCentros() {
-        return (Set<Centro>) centros;
+    public Set<String> getCentros() {
+        return (Set<String>) centros;
     }
 
-    public void setCentros(Set<Centro> centros) {
-        this.centros = (Set<Centro>) centros;
+    public void setCentros(String centroAnadir) {
+        this.centros.add(centroAnadir) ;
+    }
+    
+    public void deletearUnCentro(String centroAnadir) {
+        this.centros.remove(centroAnadir) ;
     }
     
     
 //////////
-    public int getCod_prof() {
+    public String getCod_prof() {
 		return cod_prof;
 	}
 
-	public void setCod_prof(int cod_prof) {
+	public void setCod_prof(String cod_prof) {
 		this.cod_prof = cod_prof;
 	}
 
