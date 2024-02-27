@@ -49,7 +49,7 @@ public class Main {
 		// AHORA SE LE ASIGNAN LAS CLAVES FORANEAS
 		director1.addAsignatura(asignatura1);
 		// ojo se agrega un profesor a un centro y un centro a un profesor
-		// director1.setCentros(centro1);
+		director1.setCentros("1");
 		centro1.setDirector("1");// -----> director centro 2 por la tanato ya no lo debo aladir a un centro
 										// porque me daba error
 
@@ -62,6 +62,7 @@ public class Main {
 		// Date fecha_de_ahora12 = new Date();
 		// director2.setFecha_nac((java.sql.Date) fecha_de_ahora12);
 		director2.setSexo('F');
+		director2.setCentros("2");
 		// AHORA SE LE ASIGNAN LAS CLAVES FORANEAS
 		director2.addAsignatura(asignatura3);
 		centro2.setDirector("2");// -----> director centro 2 por la tanato ya no lo debo aladir a un centro
@@ -131,7 +132,7 @@ public class Main {
 		 */
 		listarALosJuanes();
 		
-		copiarProfesorAOtroCentro("3", "2", "1");
+		copiarProfesorAOtroCentro("3", "1");
 		
 		listarALosProfesores();
 
@@ -150,13 +151,13 @@ public class Main {
 
 			Objects<Centro> listaDeCentros = odb.getObjects(Centro.class); /// --> obtengo la lista de los centro
 
-			System.out.println("Centros con director llamado Juan:");
+			System.out.println("		Centros con director llamado Juan:");
 			for (Centro c : listaDeCentros) {
 				// --> con este comanto accedo al objeto centro y a sus atributos
 				String director = (String) c.getDirector();
 				if (director != null && director.equals("1")) {// tuve que poner que no fuera nulo
 																					// porque me saltaba error
-					System.out.println(c.getNom_centro());
+					System.out.println("		"+c.getNom_centro());
 				}
 			}
 		} finally {
@@ -177,7 +178,7 @@ public class Main {
 			for (Profesor c : listaDeProfesores) {
 				// --> con este comanto accedo al objeto centro y a sus atributos
 
-				System.out.println(c.getNombre_ape() + "\n");
+				System.out.println(c.getNombre_ape() + "\n Asignaturas:	" + c.getAsignaturas().toString()+"\nCodigo de centros: "+c.getCentros().toString()+ "\n\n");
 
 			}
 		} finally {
@@ -286,36 +287,42 @@ public class Main {
 		}
 	}
 
-	public static void copiarProfesorAOtroCentro(String codProfesor, String codCentroOrigen, String codCentroDestino) {
+	public static void copiarProfesorAOtroCentro(String codProfesor,  String codCentroDestino) {
 		ODB odb = null;
+		odb = ODBFactory.open("bdProfesores.neodatis");
 		try {
 
 			// Obtener el profesor y los centros involucrados para poder hacer la
 			// modificacion a 3 bandas --> no funciona bien
-			@SuppressWarnings("null")
-			Objects<Profesor> profesores = odb.getObjects(Profesor.class);
+			
+			
+			Objects<Profesor> listaDeProfesores = odb.getObjects(Profesor.class);
+			
 			Profesor profesor = null;
 			Centro centroOrigen = null;
 			Centro centroDestino = null;
 
-			for (Profesor p : profesores) {
+			for (Profesor p : listaDeProfesores) {
 				if (p.getCod_prof().equals(codProfesor) ) {
 					profesor = p;
+					profesor.setCentros(codCentroDestino);
+					odb.store(profesor);
+					odb.commit();
 					break;
 				}
 			}
 
-			Objects<Centro> centros = odb.getObjects(Centro.class);
+			/*Objects<Centro> centros = odb.getObjects(Centro.class);
 			for (Centro c : centros) {
 				if (c.getCod_centro().equals(codCentroOrigen)) {
 					centroOrigen = c;
 				} else if (c.getCod_centro() == codCentroDestino) {
 					centroDestino = c;
 				}
-			}
+			}*/
 
 			// Verificar que se hayan encontrado el profesor y los centros
-			if (profesor != null && centroOrigen != null && centroDestino != null) {
+			/*if (profesor != null && centroOrigen != null && centroDestino != null) {
 				// Agregar el profesor al centro destino--> debe hacerse el cambio en ambas
 				// direcciones
 				profesor.addCentro(codCentroDestino);
@@ -325,7 +332,7 @@ public class Main {
 				odb.store(profesor);
 				odb.store(centroDestino);
 				odb.commit();
-			}
+			}*/
 
 		} finally {
 			// Cerrar la base de datos
