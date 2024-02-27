@@ -41,7 +41,7 @@ public class Profesor {
         centros.remove(centro);
     }
 
-    // Getters y setters
+    
     public Set<Centro> getCentros() {
         return (Set<Centro>) centros;
     }
@@ -63,7 +63,7 @@ public class Profesor {
 	public String getNombre_ape() {
 		return nombre_ape;
 	}
-
+//nuevo metodo porque el aterior fallaba
 	public void setNombre_ape(String nombre_ape) {
 		this.nombre_ape = nombre_ape;
 	}
