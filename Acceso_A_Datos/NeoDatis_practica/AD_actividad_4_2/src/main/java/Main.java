@@ -5,6 +5,10 @@ import java.util.Set;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 import org.neodatis.odb.Objects;
+import org.neodatis.odb.core.query.criteria.Where;
+import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
+import org.neodatis.odb.core.query.criteria.*;
+import org.neodatis.odb.core.query.*;
 
 public class Main {
 
@@ -149,17 +153,23 @@ public class Main {
 		ODB odb = ODBFactory.open("bdProfesores.neodatis");
 		try {
 
-			Objects<Centro> listaDeCentros = odb.getObjects(Centro.class); /// --> obtengo la lista de los centro
+		        // Creación de la consulta para buscar centros con un director llamado 'Juan' porque el id que le doy a juan es 1
+		        IQuery query = new CriteriaQuery(Centro.class, Where.equal("director", "1"));
 
-			System.out.println("		Centros con director llamado Juan:");
-			for (Centro c : listaDeCentros) {
-				// --> con este comanto accedo al objeto centro y a sus atributos
-				String director = (String) c.getDirector();
-				if (director != null && director.equals("1")) {// tuve que poner que no fuera nulo
-																					// porque me saltaba error
-					System.out.println("		"+c.getNom_centro());
-				}
-			}
+		        // Realizar la consulta que voy a lanzar dentro de la base de datos para obtener solo los centros que cumplan la condicion
+		        Objects<Centro> centros = odb.getObjects(query);
+
+		        System.out.println("Hay " + centros.size() + " centros con un director llamado Juan:");
+
+		        // Iterar y mostrar los resultados
+		        while (centros.hasNext()) {
+		            Centro centro = centros.next();
+		            // Suponiendo que la clase Centro tiene un método getNombre() para obtener su nombre
+		            System.out.println("Centro: " + centro.getNom_centro());
+		            // Otros atributos del centro si es necesario
+		        }
+
+		        
 		} finally {
 			if (odb != null) {
 				odb.commit();
