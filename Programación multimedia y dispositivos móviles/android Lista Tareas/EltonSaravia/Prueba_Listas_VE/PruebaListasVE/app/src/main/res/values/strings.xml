@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lista Tareas</string>
+    <string name="fragmento">fragmento</string>
+    <string name="status">Status:</string>
+    <string name="nueva_tarea">aniadir tarea</string>
+    <string name="lista_tareas">lista tareas</string>
+    <color name="purple_200">#FF3333</color>
+    <color name="purple_700">#33F3FF</color>
+    <color name="teal_200">#49FF33</color>
+</resources>

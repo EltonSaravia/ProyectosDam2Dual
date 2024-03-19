@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_lista_tareas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/lista_tareas" />
+    <item
+        android:id="@+id/menu_aniadir_tarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/nueva_tarea" />
+
+</menu>
